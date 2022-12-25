@@ -1,0 +1,23 @@
+version: '3'
+services:
+  pub-db:
+    build:
+      context: postgres
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_DB: pub
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_HOST_AUTH_METHOD: md5
+      PG_WRITE_PWD: ddluser
+      PG_READ_PWD: dmluser
+      PG_GRETL_PWD: gretl
+    ports:
+      - "54322:5432"
+  geoserver:
+    build:
+      context: geoserver
+      dockerfile: Dockerfile
+    ports:
+      - "80:8080"
+    depends_on:
+      - pub-db

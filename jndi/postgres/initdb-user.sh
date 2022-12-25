@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+
+psql --set=PG_READ_PWD="$PG_READ_PWD" --set=PG_WRITE_PWD="$PG_WRITE_PWD" --set=PG_GRETL_PWD="$PG_GRETL_PWD" -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
+    SET password_encryption = md5;
+
+    CREATE ROLE ddluser LOGIN SUPERUSER PASSWORD :'PG_WRITE_PWD';
+    CREATE USER gretl LOGIN ENCRYPTED PASSWORD :'PG_GRETL_PWD';
+    GRANT ALL PRIVILEGES ON DATABASE $POSTGRES_DB TO ddluser, gretl; 
+EOSQL

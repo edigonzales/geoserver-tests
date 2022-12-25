@@ -1,1 +1,6 @@
 # geoserver-tests
+
+## JNDI
+
+## REST
+
