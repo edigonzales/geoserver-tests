@@ -1,0 +1,126 @@
+# Save the output of this file and use kubectl create -f to import
+# it into Kubernetes.
+#
+# Created with podman-4.3.1
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    io.kubernetes.cri-o.ContainerType/dreamylamarr: container
+    io.kubernetes.cri-o.ContainerType/gretl: container
+    io.kubernetes.cri-o.ContainerType/quirkychebyshev: container
+    io.kubernetes.cri-o.SandboxID/dreamylamarr: d9623b6b873a47dd5845dbc25fcc7b497bd35556f538ceca4b65d4853316f3b
+    io.kubernetes.cri-o.SandboxID/gretl: d9623b6b873a47dd5845dbc25fcc7b497bd35556f538ceca4b65d4853316f3b
+    io.kubernetes.cri-o.SandboxID/quirkychebyshev: d9623b6b873a47dd5845dbc25fcc7b497bd35556f538ceca4b65d4853316f3b
+    io.kubernetes.cri-o.TTY/dreamylamarr: "true"
+    io.kubernetes.cri-o.TTY/gretl: "true"
+    io.kubernetes.cri-o.TTY/quirkychebyshev: "true"
+    io.podman.annotations.autoremove/dreamylamarr: "FALSE"
+    io.podman.annotations.autoremove/gretl: "FALSE"
+    io.podman.annotations.autoremove/quirkychebyshev: "FALSE"
+    io.podman.annotations.init/dreamylamarr: "FALSE"
+    io.podman.annotations.init/gretl: "FALSE"
+    io.podman.annotations.init/quirkychebyshev: "FALSE"
+    io.podman.annotations.privileged/dreamylamarr: "FALSE"
+    io.podman.annotations.privileged/gretl: "FALSE"
+    io.podman.annotations.privileged/quirkychebyshev: "FALSE"
+    io.podman.annotations.publish-all/dreamylamarr: "FALSE"
+    io.podman.annotations.publish-all/gretl: "FALSE"
+    io.podman.annotations.publish-all/quirkychebyshev: "FALSE"
+  creationTimestamp: "2023-01-29T16:40:34Z"
+  labels:
+    app: gdi-dev
+  name: gdi-dev
+spec:
+  automountServiceAccountToken: false
+  containers:
+  - args:
+    - postgres
+    env:
+    - name: PGPORT
+      value: "54321"
+    - name: PG_WRITE_PWD
+      value: ddluser
+    - name: PG_READ_PWD
+      value: dmluser
+    - name: PG_GRETL_PWD
+      value: gretl
+    - name: POSTGRES_DB
+      value: edit
+    - name: POSTGRES_PASSWORD
+      value: mysecretpassword
+    - name: POSTGRES_HOST_AUTH_METHOD
+      value: md5
+    image: docker.io/edigonzales/postgis:14-3.2
+    name: dreamylamarr
+    ports:
+    - containerPort: 54321
+      hostPort: 54321
+    - containerPort: 54322
+      hostPort: 54322
+    resources: {}
+    securityContext:
+      capabilities:
+        drop:
+        - CAP_MKNOD
+        - CAP_NET_RAW
+        - CAP_AUDIT_WRITE
+    tty: true
+    volumeMounts:
+    - mountPath: /var/lib/postgresql/data
+      name: e2fc85cbd53acd7db86eb003697bdec4e78ec91be5054fd0b8382a8c9c69340b-pvc
+  - args:
+    - postgres
+    env:
+    - name: POSTGRES_PASSWORD
+      value: mysecretpassword
+    - name: PG_READ_PWD
+      value: dmluser
+    - name: POSTGRES_DB
+      value: pub
+    - name: PGPORT
+      value: "54322"
+    - name: POSTGRES_HOST_AUTH_METHOD
+      value: md5
+    - name: PG_WRITE_PWD
+      value: ddluser
+    - name: PG_GRETL_PWD
+      value: gretl
+    image: docker.io/edigonzales/postgis:14-3.2
+    name: quirkychebyshev
+    resources: {}
+    securityContext:
+      capabilities:
+        drop:
+        - CAP_MKNOD
+        - CAP_NET_RAW
+        - CAP_AUDIT_WRITE
+    tty: true
+    volumeMounts:
+    - mountPath: /var/lib/postgresql/data
+      name: dd4cebc028c377b2f2fd6db8ab2e6132f61527287657b03d5658a69fa0f9e92f-pvc
+  - command:
+    - bash
+    image: docker.io/sogis/gretl:2.2.295
+    name: gretl
+    resources: {}
+    securityContext:
+      capabilities:
+        drop:
+        - CAP_MKNOD
+        - CAP_NET_RAW
+        - CAP_AUDIT_WRITE
+    stdin: true
+    tty: true
+  enableServiceLinks: false
+  hostname: gdi-dev
+  restartPolicy: Never
+  volumes:
+  - name: e2fc85cbd53acd7db86eb003697bdec4e78ec91be5054fd0b8382a8c9c69340b-pvc
+    persistentVolumeClaim:
+      claimName: e2fc85cbd53acd7db86eb003697bdec4e78ec91be5054fd0b8382a8c9c69340b
+  - name: dd4cebc028c377b2f2fd6db8ab2e6132f61527287657b03d5658a69fa0f9e92f-pvc
+    persistentVolumeClaim:
+      claimName: dd4cebc028c377b2f2fd6db8ab2e6132f61527287657b03d5658a69fa0f9e92f
+status: {}
+
