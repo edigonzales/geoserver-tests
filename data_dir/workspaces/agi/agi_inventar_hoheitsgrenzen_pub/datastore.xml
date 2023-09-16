@@ -1,0 +1,29 @@
+<dataStore>
+  <id>DataStoreInfoImpl-764865a4:18a9eaaa1ac:-7ff2</id>
+  <name>agi_inventar_hoheitsgrenzen_pub</name>
+  <description>agi_inventar_hoheitsgrenzen_pub</description>
+  <type>PostGIS (JNDI)</type>
+  <enabled>true</enabled>
+  <workspace>
+    <id>WorkspaceInfoImpl-764865a4:18a9eaaa1ac:-8000</id>
+  </workspace>
+  <connectionParameters>
+    <entry key="schema">agi_inventar_hoheitsgrenzen_pub</entry>
+    <entry key="Estimated extends">true</entry>
+    <entry key="fetch size">1000</entry>
+    <entry key="encode functions">true</entry>
+    <entry key="Expose primary keys">true</entry>
+    <entry key="Support on the fly geometry simplification">true</entry>
+    <entry key="Batch insert size">1</entry>
+    <entry key="preparedStatements">false</entry>
+    <entry key="Method used to simplify geometries">FAST</entry>
+    <entry key="jndiReferenceName">java:comp/env/jdbc/pub</entry>
+    <entry key="dbtype">postgis</entry>
+    <entry key="namespace">https://agi.so.ch</entry>
+    <entry key="Loose bbox">true</entry>
+  </connectionParameters>
+  <__default>false</__default>
+  <dateCreated>2023-09-16 16:00:08.394 UTC</dateCreated>
+  <dateModified>2023-09-16 16:12:30.752 UTC</dateModified>
+  <disableOnConnFailure>false</disableOnConnFailure>
+</dataStore>

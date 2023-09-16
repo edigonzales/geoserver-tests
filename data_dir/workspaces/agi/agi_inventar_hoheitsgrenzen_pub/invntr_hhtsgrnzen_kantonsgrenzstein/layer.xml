@@ -1,0 +1,17 @@
+<layer>
+  <name>invntr_hhtsgrnzen_kantonsgrenzstein</name>
+  <id>LayerInfoImpl-764865a4:18a9eaaa1ac:-7fef</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--570ae188:124761b8d78:-7fdf</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-764865a4:18a9eaaa1ac:-7ff0</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2023-09-16 16:00:29.415 UTC</dateCreated>
+  <dateModified>2023-09-16 16:11:22.158 UTC</dateModified>
+</layer>
