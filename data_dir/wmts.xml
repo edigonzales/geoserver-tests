@@ -1,6 +1,6 @@
 <wmts>
   <id>WMTSInfoImpl--3ef31051:182c1e8b194:-8000</id>
-  <enabled>true</enabled>
+  <enabled>false</enabled>
   <name>WMTS</name>
   <title>GeoServer Web Map Tile Service</title>
   <maintainer>http://geoserver.org/com</maintainer>

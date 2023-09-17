@@ -210,14 +210,14 @@
       <minOccurs>0</minOccurs>
       <maxOccurs>0</maxOccurs>
       <binding>java.lang.String</binding>
-      <source>if_then_else(richtungskerbe, &apos;Ja&apos;, &apos;Nein&apos;)</source>
+      <source>if_then_else(isNull(richtungskerbe), &apos;&apos;, if_then_else(richtungskerbe, &apos;Ja&apos;, &apos;Nein&apos;))</source>
     </attribute>
     <attribute>
       <name>DateFormat Begehung</name>
       <minOccurs>0</minOccurs>
       <maxOccurs>0</maxOccurs>
       <binding>java.lang.String</binding>
-      <source>dateFormat(&apos;dd. MMMM yyyy&apos;,dateParse(&apos;yyyy-MM-dd&apos;, begehung))</source>
+      <source>if_then_else(isNull(begehung), &apos;&apos;, dateFormat(&apos;dd. MMMM yyyy&apos;,dateParse(&apos;yyyy-MM-dd&apos;, begehung)))</source>
       <description>
         <en-US>Funktioniert es nur mit zuerst parsen?</en-US>
       </description>

@@ -44,14 +44,29 @@
     <entry key="MarkFactoryList"></entry>
     <entry key="scalehintMapunitsPixel">false</entry>
   </metadata>
+  <srs>
+    <string>2056</string>
+    <string>4326</string>
+  </srs>
   <watermark>
     <enabled>false</enabled>
     <position>BOT_RIGHT</position>
     <transparency>0</transparency>
   </watermark>
   <interpolation>Nearest</interpolation>
-  <getFeatureInfoMimeTypeCheckingEnabled>false</getFeatureInfoMimeTypeCheckingEnabled>
-  <getMapMimeTypeCheckingEnabled>false</getMapMimeTypeCheckingEnabled>
+  <getFeatureInfoMimeTypeCheckingEnabled>true</getFeatureInfoMimeTypeCheckingEnabled>
+  <getFeatureInfoMimeTypes>
+    <string>text/html</string>
+    <string>application/json</string>
+  </getFeatureInfoMimeTypes>
+  <getMapMimeTypeCheckingEnabled>true</getMapMimeTypeCheckingEnabled>
+  <getMapMimeTypes>
+    <string>text/html; subtype=openlayers</string>
+    <string>image/png</string>
+    <string>image/png; mode=8bit</string>
+    <string>image/jpeg</string>
+    <string>text/html; subtype=openlayers3</string>
+  </getMapMimeTypes>
   <dynamicStylingDisabled>false</dynamicStylingDisabled>
   <featuresReprojectionDisabled>false</featuresReprojectionDisabled>
   <maxBuffer>25</maxBuffer>
@@ -65,4 +80,5 @@
     <maxEntries>1000</maxEntries>
     <maxEntrySize>51200</maxEntrySize>
   </cacheConfiguration>
+  <autoEscapeTemplateValues>false</autoEscapeTemplateValues>
 </wms>

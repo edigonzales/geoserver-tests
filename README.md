@@ -20,6 +20,20 @@ http://localhost/geoserver/agi/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureI
 ```
 http://localhost/geoserver/agi/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image%2Fpng&TRANSPARENT=true&QUERY_LAYERS=agi%3Ainvntr_hhtsgrnzen_kantonsgrenzstein&STYLES&LAYERS=agi%3Ainvntr_hhtsgrnzen_kantonsgrenzstein&exceptions=application%2Fvnd.ogc.se_inimage&INFO_FORMAT=text%2Fhtml&FEATURE_COUNT=50&X=50&Y=50&SRS=EPSG%3A2056&WIDTH=101&HEIGHT=101&BBOX=2616029.2107360745%2C1220585.024665918%2C2619884.959512502%2C1224440.7734423454
 ```
+http://localhost/geoserver/agi/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image%2Fjpeg&TRANSPARENT=true&QUERY_LAYERS=agi%3A2592000_1229000.ch.so.agi.lidar_2019.ndsm_buildings&STYLES&LAYERS=agi%3A2592000_1229000.ch.so.agi.lidar_2019.ndsm_buildings&exceptions=application%2Fvnd.ogc.se_inimage&INFO_FORMAT=application/json&FEATURE_COUNT=50&X=50&Y=50&SRS=EPSG%3A2056&WIDTH=101&HEIGHT=101&BBOX=2592182.08036496%2C1229049.6447529022%2C2592242.3264395916%2C1229109.890827534
+
+
+TODO: Raster
+
+Im Featuretype kann man bereits vieles konfigurieren:
+
+- Aliasnamen
+- Attribute nicht anzeigen
+- Berechnungen mit Attributen (z.B. "true" -> "Ja"). Aufpassen bei "null"-Werten (-> Richtungskerbe? Ist das null oder wird false für null gehalten?)
+- Neues Attribute, z.B. für Objektblatt (dynamische Werte werden in den Templates berechnet)
+
+Templates für HTML- und JSON-Output. 
+
 
 
 

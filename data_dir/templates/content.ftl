@@ -7,6 +7,7 @@ will be called multiple times if there are various feature collections
   <#assign attrs = feature.attributes>
   <table class="featureInfo">
     <caption class="featureInfo">${feature.type.title}: ${feature.t_id.value}</caption>
+    <caption class="featureInfo">${feature.type.title}: </caption>
     <colgroup>
       <col style="width:40%">
       <col style="width:60%">
