@@ -222,6 +222,13 @@
         <en-US>Funktioniert es nur mit zuerst parsen?</en-US>
       </description>
     </attribute>
+    <attribute>
+      <name>Objektblatt</name>
+      <minOccurs>0</minOccurs>
+      <maxOccurs>0</maxOccurs>
+      <binding>java.lang.String</binding>
+      <source>&apos;https://geo.so.ch/api/v1/document/kantonsgrenzsteine?feature=$$feature&amp;x=$$x&amp;y=$$y&apos;</source>
+    </attribute>
   </attributes>
   <overridingServiceSRS>false</overridingServiceSRS>
   <skipNumberMatched>false</skipNumberMatched>

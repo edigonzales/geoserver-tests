@@ -27,6 +27,21 @@ will be called multiple times if there are various feature collections
               <td>${attribute.rawValue?date?string["dd.MM.yyyy"]}</td>
             <#elseif (attribute.value?string?lower_case?ends_with("jpg")) || (attribute.value?string?lower_case?ends_with("png"))>
               <td><a href="${attribute.value}" target="_blank"> <img src="${attribute.value}"/></a></td>
+            <#elseif attribute.value?starts_with("http")>
+              <#assign xx = request.BBOX?remove_beginning("SRSEnvelope[")?remove_ending("]")?split(",")[0]>
+              <#assign yy = request.BBOX?remove_beginning("SRSEnvelope[")?remove_ending("]")?split(",")[1]>
+
+              <#assign x1 =  xx?split(":")[0]?string?trim?number> 
+              <#assign x2 =  xx?split(":")[1]?string?trim?number> 
+              <#assign x =  x1 + (x2 - x1)/2> 
+
+              <#assign y1 =  yy?split(":")[0]?string?trim?number> 
+              <#assign y2 =  yy?split(":")[1]?string?trim?number> 
+              <#assign y =  y1 + (y2 - y1)/2> 
+
+              <#assign reportUrl = attribute.value?replace("$$feature", feature.t_id.value)?replace("$$x", x?c)?replace("$$y", y?c)>
+              <td><a href="${reportUrl}" target="_blank"> ${reportUrl}</a></td>
+
             <#else>
               <td>${attribute.value}</td> 
             </#if>
@@ -35,6 +50,12 @@ will be called multiple times if there are various feature collections
       </#list>
     </tbody>
   </table>
+
+
+
+
+
+
   <br>
 </#list>
 
