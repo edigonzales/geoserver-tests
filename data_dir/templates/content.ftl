@@ -6,8 +6,15 @@ will be called multiple times if there are various feature collections
 <#list features as feature>
   <#assign attrs = feature.attributes>
   <table class="featureInfo">
-    <caption class="featureInfo">${feature.type.title}: ${feature.t_id.value}</caption>
-    <caption class="featureInfo">${feature.type.title}: </caption>
+
+
+    <#if feature.attributes['t_id']??>
+      <caption class="featureInfo">${feature.type.title}: ${feature.attributes['t_id'].value}</caption>
+    <#else>
+      <caption class="featureInfo">${feature.type.title} </caption>
+    </#if>
+
+
     <colgroup>
       <col style="width:40%">
       <col style="width:60%">

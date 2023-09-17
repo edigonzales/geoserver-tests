@@ -20,19 +20,84 @@ http://localhost/geoserver/agi/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureI
 ```
 http://localhost/geoserver/agi/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image%2Fpng&TRANSPARENT=true&QUERY_LAYERS=agi%3Ainvntr_hhtsgrnzen_kantonsgrenzstein&STYLES&LAYERS=agi%3Ainvntr_hhtsgrnzen_kantonsgrenzstein&exceptions=application%2Fvnd.ogc.se_inimage&INFO_FORMAT=text%2Fhtml&FEATURE_COUNT=50&X=50&Y=50&SRS=EPSG%3A2056&WIDTH=101&HEIGHT=101&BBOX=2616029.2107360745%2C1220585.024665918%2C2619884.959512502%2C1224440.7734423454
 ```
-http://localhost/geoserver/agi/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image%2Fjpeg&TRANSPARENT=true&QUERY_LAYERS=agi%3A2592000_1229000.ch.so.agi.lidar_2019.ndsm_buildings&STYLES&LAYERS=agi%3A2592000_1229000.ch.so.agi.lidar_2019.ndsm_buildings&exceptions=application%2Fvnd.ogc.se_inimage&INFO_FORMAT=application/json&FEATURE_COUNT=50&X=50&Y=50&SRS=EPSG%3A2056&WIDTH=101&HEIGHT=101&BBOX=2592182.08036496%2C1229049.6447529022%2C2592242.3264395916%2C1229109.890827534
 
-
-TODO: Raster
+Link zu Intercapi:
+```
+http://localhost/geoserver/agi/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image%2Fpng&TRANSPARENT=true&QUERY_LAYERS=agi%3Amopublic_grundstueck&STYLES&LAYERS=agi%3Amopublic_grundstueck&exceptions=application%2Fvnd.ogc.se_inimage&INFO_FORMAT=text%2Fhtml&FEATURE_COUNT=50&X=50&Y=50&SRS=EPSG%3A2056&WIDTH=101&HEIGHT=101&BBOX=2596123.0371667286%2C1225519.1819063514%2C2596364.021465255%2C1225760.1662048781
+```
 
 Im Featuretype kann man bereits vieles konfigurieren:
 
 - Aliasnamen
 - Attribute nicht anzeigen
 - Berechnungen mit Attributen (z.B. "true" -> "Ja"). Aufpassen bei "null"-Werten (-> Richtungskerbe? Ist das null oder wird false für null gehalten?)
-- Neues Attribute, z.B. für Objektblatt (dynamische Werte werden in den Templates berechnet)
+- Neues Attribute, z.B. für Objektblatt (dynamische Werte werden in den Templates berechnet). Oder aber man kann direkt im Featuretype auf Werte zurückgreifen (Link zu Intercapi).
+- Raster: Hier wird es bissle frickliger. Man könnte mit Rastertemplates arbeiten resp. man muss ColorMaps verwendend und dann mit dem Custom Name arbeiten. Oder man missbraucht den Bandnamen (der aber keine Leerzeichen und Sonderzeichen erlaubt).
 
-Templates für HTML- und JSON-Output. 
+Templates für HTML- und JSON-Output sorgen für den Rest. 
+
+Datumformatierung scheint mir viele Stellschrauben zu haben. Wahrscheinlich einfacher/robuster, wenn es beim Featuretype passiert. Da kann weiss man ja was man hat (Timestamp, nur Datum, ...).
+
+Verbesserung:
+- Reihenfolge ändern (drag n drop)
+- Nicht löschen, sondern disablen
+
+
+**todo** JSON
+
+
+Aus SIMI:
+```
+<table class="attribute-list">
+    <tbody>
+        {% set count_rrb = namespace(count = 0) %}
+        {% for dokument in feature.dokumente %}
+            {% if dokument.Titel == 'Regierungsratsbeschluss' %}
+                {% set count_rrb.count = count_rrb.count + 1 %}
+            {% endif %}
+        {% endfor %}
+        {% set count_rrb_2 = count_rrb.count * 2 %}
+        
+        {% set publiziertAb_list = feature.publiziertab.split('-') %}
+	    <tr>
+            <td class="identify-attr-title wrap"><i>Typ-Bezeichnung:</i></td>
+            <td class="identify-attr-value wrap">{{ feature.typ_bezeichnung }} </td>
+        </tr>
+        <tr>
+            <td class="identify-attr-title wrap"><i>In Kraft:</i></td>
+            <td class="identify-attr-value wrap">{{ feature.publiziertab }}</td>
+        </tr>
+        {% for dokument in feature.dokumente %}
+            {% if dokument.Titel != 'Regierungsratsbeschluss' %}
+                <tr>
+                    <td class="identify-attr-title wrap"><i>{{ dokument.Titel }}:</i></td>
+                    {% if dokument.Titel is none %}
+                        <td class="identify-attr-value wrap" style="padding-left: 0;padding-right: 0.25em;"><a href={{ dokument.TextimWeb }} target="_blank">{{ dokument.Titel }}</a></td> 
+                    {% else %}
+                        <td class="identify-attr-value wrap" style="padding-left: 0;padding-right: 0.25em;"><a href={{ dokument.TextimWeb }} target="_blank">{{ dokument.OffiziellerTitel }}</a></td>
+                    {% endif %}
+                </tr>
+            {% endif %}
+        {% endfor %}
+        {% if feature.typ_bezeichnung != 'Wald' %}
+        <tr>
+            <td class="identify-attr-title wrap" rowspan={{ count_rrb_2 }}><i>Regierungsratsbeschluss:</i></td>
+            {% for dokument in feature.dokumente %}
+                {% if dokument.Titel == 'Regierungsratsbeschluss' %}
+                    {% set publiziertAb_list = dokument.publiziertAb.split('-') %}
+                        <td class="identify-attr-value wrap" style="padding-left: 0;padding-right: 0.25em;"><a href={{ dokument.TextimWeb }} target="_blank">RRB {{ dokument.OffizielleNr }}</a> vom {{ publiziertAb_list[2] }}.{{publiziertAb_list[1] }}.{{ publiziertAb_list[0] }} <br>{{ dokument.OffiziellerTitel }}</td>
+                    </tr>
+                    <tr>
+                {% endif %}
+            {% endfor %}
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+```
+
+
+## Zeilen filtern
 
 
 
