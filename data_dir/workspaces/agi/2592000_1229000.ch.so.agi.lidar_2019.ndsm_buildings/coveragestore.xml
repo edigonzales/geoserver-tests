@@ -1,0 +1,14 @@
+<coverageStore>
+  <id>CoverageStoreInfoImpl-4e03042b:18aa3f51fbf:-8000</id>
+  <name>2592000_1229000.ch.so.agi.lidar_2019.ndsm_buildings</name>
+  <description>2592000_1229000.ch.so.agi.lidar_2019.ndsm_buildings</description>
+  <type>GeoTIFF</type>
+  <enabled>true</enabled>
+  <workspace>
+    <id>WorkspaceInfoImpl-764865a4:18a9eaaa1ac:-8000</id>
+  </workspace>
+  <__default>false</__default>
+  <dateCreated>2023-09-17 16:24:25.277 UTC</dateCreated>
+  <disableOnConnFailure>false</disableOnConnFailure>
+  <url>file:data/buildings/2592000_1229000.ch.so.agi.lidar_2019.ndsm_buildings.tif</url>
+</coverageStore>

@@ -38,7 +38,11 @@ Templates für HTML- und JSON-Output sorgen für den Rest.
 
 Datumformatierung scheint mir viele Stellschrauben zu haben. Wahrscheinlich einfacher/robuster, wenn es beim Featuretype passiert. Da kann weiss man ja was man hat (Timestamp, nur Datum, ...).
 
-Verbesserung:
+Idee Custom Layerinfo: Statischer Methodenaufruf im GeoJson-Template. Die Methode liefert html und map mit Werten zurück. Dann kann immer gewählt werden, ob html oder die Werte vom Web GIS Client gerendert werden. Die Werte sind in den Standard-Properties. Das html ist escaped in einem Root-Feld (wie der Titel).
+
+Eventuell kann man auch noch Makros o.ä. schreiben, damit man z.B. für Custom Templates nicht immer den Click-Punkt berechnen muss (wenn man ihn braucht).
+
+Verbesserung Geoserver:
 - Reihenfolge ändern (drag n drop)
 - Nicht löschen, sondern disablen
 
@@ -100,6 +104,8 @@ Aus SIMI:
 ## Zeilen filtern
 
 
+## Namespaces
+- Was geht ganz ohne?
 
 
 ## REST

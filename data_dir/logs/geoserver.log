@@ -55120,3 +55120,156 @@ GetMap Request
 	Version = 1.1.1
 	XPixel = 50
 	YPixel = 50
+17 Sep 19:43:31 CONFIG [geoserver.logging] - Log4j 2 configuration set to DEFAULT_LOGGING.xml
+17 Sep 19:43:32 CONFIG [org.geoserver] - GeoServer configuration lock is enabled
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loading catalog /usr/local/geoserver/data
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'burg'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'simple_roads'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'pophatch'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'giant_polygon'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'poi'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'polygon'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'population'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'raster'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'simple_streams'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'tiger_roads'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'restricted'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'point'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'grass'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'dem'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'poly_landmarks'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'green'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'line'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'capitals'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'cite_lakes'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'generic'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'rain'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded default workspace 'agi'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded workspace 'agi'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'raster_dtm_dsm'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'grundstueck'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded workspace 'nurc'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded workspace 'tiger'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded workspace 'cite'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded workspace 'it.geosolutions'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded workspace 'sde'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded workspace 'sf'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded workspace 'ne'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'coastline'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'populated_places'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'boundary_lines'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'disputed'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'countries'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded style 'countries_mapcolor9'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded workspace 'topp'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded data store 'agi_mopublic_pub', enabled
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded feature type 'mopublic_grundstueck', enabled
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded layer 'mopublic_grundstueck'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded coverage store '2592000_1229000.ch.so.agi.lidar_2019.ndsm_buildings', enabled
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded coverage '2592000_1229000.ch.so.agi.lidar_2019.ndsm_buildings', enabled
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded layer '2592000_1229000.ch.so.agi.lidar_2019.ndsm_buildings'
+17 Sep 19:43:32 CONFIG [org.geoserver] - Loaded data store 'agi_inventar_hoheitsgrenzen_pub', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded feature type 'invntr_hhtsgrnzen_kantonsgrenzstein', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer 'invntr_hhtsgrnzen_kantonsgrenzstein'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded coverage store 'mosaic', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded coverage 'mosaic', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer 'mosaic'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded coverage store 'arcGridSample', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded coverage 'Arc_Sample', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer 'Arc_Sample'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded coverage store 'img_sample2', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded coverage 'Pk50095', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer 'Pk50095'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded coverage store 'worldImageSample', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded coverage 'Img_Sample', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer 'Img_Sample'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded data store 'nyc', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded feature type 'poly_landmarks', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer 'poly_landmarks'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded feature type 'poi', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer 'poi'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded feature type 'giant_polygon', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer 'giant_polygon'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded feature type 'tiger_roads', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer 'tiger_roads'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded data store 'sf', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded feature type 'restricted', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer 'restricted'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded feature type 'bugsites', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer 'bugsites'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded feature type 'archsites', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer 'archsites'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded feature type 'streams', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer 'streams'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded feature type 'roads', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer 'roads'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded coverage store 'sfdem', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded coverage 'sfdem', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer 'sfdem'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded data store 'taz_shapes', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded feature type 'tasmania_water_bodies', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer 'tasmania_water_bodies'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded feature type 'tasmania_state_boundaries', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer 'tasmania_state_boundaries'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded feature type 'tasmania_roads', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer 'tasmania_roads'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded feature type 'tasmania_cities', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer 'tasmania_cities'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded data store 'states_shapefile', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded feature type 'states', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer 'states'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded data store 'NaturalEarth', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded feature type 'boundary_lines', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer 'boundary_lines'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded feature type 'disputed_areas', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer 'disputed_areas'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded feature type 'populated_places', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer 'populated_places'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded feature type 'coastlines', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer 'coastlines'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded feature type 'countries', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer 'countries'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer group 'world'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer group 'tiger-ny'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer group 'spearfish'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded layer group 'tasmania'
+17 Sep 19:43:33 CONFIG [org.geoserver] - Read catalog in 1.099 s
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded service 'wfs', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded service 'wcs', disabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded service 'wms', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded service 'WMTSInfoImpl--3ef31051:182c1e8b194:-8000', disabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded service 'WFSInfoImpl-1c443fee:182c0f3f209:-7f97', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded service 'WCSInfoImpl-1c443fee:182c0f3f209:-7f96', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded service 'WMSInfoImpl-1c443fee:182c0f3f209:-7f99', enabled
+17 Sep 19:43:33 CONFIG [org.geoserver] - Loaded service 'WMTSInfoImpl-1c443fee:182c0f3f209:-7f98', enabled
+17 Sep 19:43:33 CONFIG [gwc.config] - Will look for 'geowebcache.xml' in directory '/usr/local/geoserver/data/gwc'.
+17 Sep 19:43:33 WARN   [config.XMLConfiguration] - GWC configuration validation error: cvc-elt.1.a: Cannot find the declaration of element 'gwcConfiguration'.
+17 Sep 19:43:33 WARN   [config.XMLConfiguration] - Will try to use configuration anyway. Please check the order of declared elements against the schema.
+17 Sep 19:43:33 CONFIG [config.XMLConfiguration] - Initializing GridSets from gwc
+17 Sep 19:43:33 CONFIG [config.XMLConfiguration] - Initializing layers from gwc
+17 Sep 19:43:33 CONFIG [gwc.layer] - Initializing GWC configuration based on GeoServer's Catalog
+17 Sep 19:43:33 CONFIG [gwc.layer] - GeoServer TileLayer store base directory is: gwc-layers
+17 Sep 19:43:33 CONFIG [gwc.layer] - Loading tile layers from gwc-layers
+17 Sep 19:43:33 CONFIG [gwc.layer] - Loaded 31 tile layers in 16.14 ms
+17 Sep 19:43:33 CONFIG [storage.BlobStoreAggregator] - BlobStoreConfiguration gwc contained no blob store infos.
+17 Sep 19:43:33 CONFIG [storage.DefaultStorageFinder] - Found system environment variableGEOSERVER_DATA_DIR set to /usr/local/geoserver/data, using it as the default prefix.
+17 Sep 19:43:33 CONFIG [gwc.config] - Initializing GeoServer specific GWC configuration from gwc-gs.xml
+17 Sep 19:43:33 WARN   [gce.imagemosaic] - Unable to set ordering between tiff readers spi
+17 Sep 19:43:33 CONFIG [geoserver.flow] - Control-flow inactive, there are no configured rules
+17 Sep 19:43:34 CONFIG [gwc.config] - Will look for 'geowebcache-diskquota.xml' in directory '/usr/local/geoserver/data/gwc'.
+17 Sep 19:43:34 CONFIG [gwc.config] - Will look for 'geowebcache-diskquota-jdbc.xml' in directory '/usr/local/geoserver/data/gwc'.
+17 Sep 19:43:34 CONFIG [diskquota.ConfigLoader] - DiskQuota configuration is not readable: gwc/geowebcache-diskquota.xml
+17 Sep 19:43:34 CONFIG [diskquota.ConfigLoader] - DiskQuota configuration is not readable: gwc/geowebcache-diskquota.xml
+17 Sep 19:43:34 CONFIG [diskquota.ConfigLoader] - DiskQuota configuration is not readable: gwc/geowebcache-diskquota.xml
+17 Sep 19:43:34 CONFIG [diskquota.DiskQuotaMonitor] - Setting up disk quota periodic enforcement task
+17 Sep 19:43:34 CONFIG [diskquota.DiskQuotaMonitor] - 0 layers configured with their own quotas. 
+17 Sep 19:43:34 CONFIG [diskquota.DiskQuotaMonitor] - 31 layers attached to global quota 500.0 MB
+17 Sep 19:43:34 CONFIG [diskquota.DiskQuotaMonitor] - Disk quota periodic enforcement task set up every 10 SECONDS
+17 Sep 19:43:34 CONFIG [geowebcache.GeoWebCacheDispatcher] - Invoked setServletPrefix(gwc)
+17 Sep 19:43:34 CONFIG [wms.WMSService] - Will NOT recombine tiles for non-tiling clients.
+17 Sep 19:43:34 CONFIG [wms.WMSService] - Will proxy requests to backend that are not getmap or getcapabilities.
+17 Sep 19:43:35 CONFIG [geoserver.security] - Start reloading user/groups for service named default
+17 Sep 19:43:35 CONFIG [geoserver.security] - Reloading user/groups successful for service named default
+17 Sep 19:43:36 CONFIG [geoserver.security] - AuthenticationCache Initialized with 1000 Max Entries, 300 seconds idle time, 600 seconds time to live and 3 concurrency level
+17 Sep 19:43:36 CONFIG [geoserver.security] - AuthenticationCache Eviction Task created to run every 600 seconds
+17 Sep 19:43:39 INFO   [geoserver.security] - Strong cryptography is available

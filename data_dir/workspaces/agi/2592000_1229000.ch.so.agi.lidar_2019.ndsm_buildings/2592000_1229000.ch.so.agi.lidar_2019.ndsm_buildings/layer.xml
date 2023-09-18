@@ -1,0 +1,17 @@
+<layer>
+  <name>2592000_1229000.ch.so.agi.lidar_2019.ndsm_buildings</name>
+  <id>LayerInfoImpl-4e03042b:18aa3f51fbf:-7ffe</id>
+  <type>RASTER</type>
+  <defaultStyle>
+    <id>StyleInfoImpl-4e03042b:18aa3f51fbf:-7fef</id>
+  </defaultStyle>
+  <resource class="coverage">
+    <id>CoverageInfoImpl-4e03042b:18aa3f51fbf:-7fff</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2023-09-17 16:24:47.40 UTC</dateCreated>
+  <dateModified>2023-09-17 17:05:10.936 UTC</dateModified>
+</layer>
