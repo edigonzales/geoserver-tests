@@ -1,0 +1,16 @@
+<layer>
+  <name>ch.so.arp.nutzungsplanung.grundnutzung</name>
+  <id>LayerInfoImpl-8fa6d95:18ae167dc6e:-7fdd</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--570ae188:124761b8d78:-7fe0</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-8fa6d95:18ae167dc6e:-7fde</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2023-09-29 17:31:27.716 UTC</dateCreated>
+</layer>

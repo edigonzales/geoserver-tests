@@ -1,0 +1,88 @@
+<featureType>
+  <id>FeatureTypeInfoImpl-8fa6d95:18ae167dc6e:-7ffc</id>
+  <name>ch.so.arp.nutzungsplanung.sondernutzungsplaene</name>
+  <nativeName>nutzungsplanung_ueberlagernd_flaeche</nativeName>
+  <namespace>
+    <id>NamespaceInfoImpl-8fa6d95:18ae167dc6e:-7fff</id>
+  </namespace>
+  <title>Sondernutzungspläne (Nutzungsplanung)</title>
+  <abstract>&lt;![CDATA[&#xd;
+Die Sondernutzungspläne definieren und präzisieren die Vorgaben der Grundnutzung. Als Sondernutzungspläne gelten: &lt;br&gt;&#xd;
+ Gestaltungsplan mit oder ohne Sonderbauvorschriften &lt;br&gt;&#xd;
+Gestaltungsplanpflicht Kantonale Planungen &lt;br&gt;&#xd;
+§44  &lt;a href=&quot;&quot;https://bgs.so.ch/data/711.1&quot;&quot;&gt; PBG &lt;/a&gt;&#xd;
+&#xd;
+]]&gt;</abstract>
+  <keywords>
+    <string>features</string>
+    <string>nutzungsplanung_ueberlagernd_flaeche</string>
+  </keywords>
+  <nativeCRS class="projected">PROJCS[&quot;CH1903+ / LV95&quot;, 
+  GEOGCS[&quot;CH1903+&quot;, 
+    DATUM[&quot;CH1903+&quot;, 
+      SPHEROID[&quot;Bessel 1841&quot;, 6377397.155, 299.1528128, AUTHORITY[&quot;EPSG&quot;,&quot;7004&quot;]], 
+      TOWGS84[674.374, 15.056, 405.346, 0.0, 0.0, 0.0, 0.0], 
+      AUTHORITY[&quot;EPSG&quot;,&quot;6150&quot;]], 
+    PRIMEM[&quot;Greenwich&quot;, 0.0, AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]], 
+    UNIT[&quot;degree&quot;, 0.017453292519943295], 
+    AXIS[&quot;Geodetic longitude&quot;, EAST], 
+    AXIS[&quot;Geodetic latitude&quot;, NORTH], 
+    AUTHORITY[&quot;EPSG&quot;,&quot;4150&quot;]], 
+  PROJECTION[&quot;Oblique_Mercator&quot;, AUTHORITY[&quot;EPSG&quot;,&quot;9815&quot;]], 
+  PARAMETER[&quot;longitude_of_center&quot;, 7.439583333333333], 
+  PARAMETER[&quot;latitude_of_center&quot;, 46.952405555555565], 
+  PARAMETER[&quot;azimuth&quot;, 90.0], 
+  PARAMETER[&quot;scale_factor&quot;, 1.0], 
+  PARAMETER[&quot;false_easting&quot;, 2600000.0], 
+  PARAMETER[&quot;false_northing&quot;, 1200000.0], 
+  PARAMETER[&quot;rectified_grid_angle&quot;, 90.0], 
+  UNIT[&quot;m&quot;, 1.0], 
+  AXIS[&quot;Easting&quot;, EAST], 
+  AXIS[&quot;Northing&quot;, NORTH], 
+  AUTHORITY[&quot;EPSG&quot;,&quot;2056&quot;]]</nativeCRS>
+  <srs>EPSG:2056</srs>
+  <nativeBoundingBox>
+    <minx>2593566.75</minx>
+    <maxx>2644759.0</maxx>
+    <miny>1214968.75</miny>
+    <maxy>1260817.875</maxy>
+    <crs class="projected">EPSG:2056</crs>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>7.3532441008166645</minx>
+    <maxx>8.032623253849676</maxx>
+    <miny>47.084219112893926</miny>
+    <maxy>47.49811244252001</maxy>
+    <crs>EPSG:4326</crs>
+  </latLonBoundingBox>
+  <projectionPolicy>FORCE_DECLARED</projectionPolicy>
+  <enabled>true</enabled>
+  <metadata>
+    <entry key="elevation">
+      <dimensionInfo>
+        <enabled>false</enabled>
+      </dimensionInfo>
+    </entry>
+    <entry key="time">
+      <dimensionInfo>
+        <enabled>false</enabled>
+      </dimensionInfo>
+    </entry>
+    <entry key="cachingEnabled">false</entry>
+  </metadata>
+  <store class="dataStore">
+    <id>DataStoreInfoImpl-8fa6d95:18ae167dc6e:-7ffe</id>
+  </store>
+  <serviceConfiguration>false</serviceConfiguration>
+  <simpleConversionEnabled>false</simpleConversionEnabled>
+  <internationalTitle/>
+  <internationalAbstract/>
+  <cqlFilter>typ_code_kt IN (&apos;610&apos;, &apos;611&apos;, &apos;620&apos;) AND rechtsstatus = &apos;inKraft&apos; AND publiziertab &lt; now()</cqlFilter>
+  <maxFeatures>0</maxFeatures>
+  <numDecimals>0</numDecimals>
+  <padWithZeros>false</padWithZeros>
+  <forcedDecimal>false</forcedDecimal>
+  <overridingServiceSRS>false</overridingServiceSRS>
+  <skipNumberMatched>false</skipNumberMatched>
+  <circularArcPresent>false</circularArcPresent>
+</featureType>

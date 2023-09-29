@@ -48,6 +48,15 @@ like td, tr, and so on.
         font-weight: bold;
         padding: .2em .2em;
     }
+
+    table.jsonFeatureInfo, table.jsonFeatureInfo td, table.jsonFeatureInfo th {
+        border-collapse: collapse;
+        margin: 0;
+        padding: 0;
+        /*font-size: 90%;*/
+        padding: 0.1em 0.1em;
+    }
+
   </style>
   <body>
   

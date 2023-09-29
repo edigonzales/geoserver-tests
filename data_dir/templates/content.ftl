@@ -7,18 +7,17 @@ will be called multiple times if there are various feature collections
   <#assign attrs = feature.attributes>
   <table class="featureInfo">
 
-
     <#if feature.attributes['t_id']??>
       <caption class="featureInfo">${feature.type.title}: ${feature.attributes['t_id'].value}</caption>
     <#else>
       <caption class="featureInfo">${feature.type.title} </caption>
     </#if>
 
-
     <colgroup>
       <col style="width:40%">
       <col style="width:60%">
     </colgroup>
+
     <tbody>
       <#assign odd = false>
       <#list feature.attributes as attribute>
@@ -50,6 +49,37 @@ will be called multiple times if there are various feature collections
               <#assign reportUrl = attribute.value?replace("$$feature", feature.t_id.value)?replace("$$x", x?c)?replace("$$y", y?c)>
               <td><a href="${reportUrl}" target="_blank"> ${reportUrl}</a></td>
 
+            <#-- Nicht unendlich robust/stabil. -->
+            <#elseif ((attribute.value?string?lower_case?starts_with("[{\"")) && (attribute.value?string?lower_case?ends_with("}]"))) || ((attribute.value?string?lower_case?starts_with("{\"")) && (attribute.value?string?lower_case?ends_with("}"))) >
+              <#assign parsed = attribute.value?eval_json>
+              <td>
+                <table class=jsonFeatureInfo>
+                  <colgroup>
+                    <col style="width:40%">
+                    <col style="width:60%">
+                  </colgroup>
+                  <tbody>
+                    <#-- Den ili2pg-Spezialfall, dass BAG/LIST zu einem einfachen JSON-Objekte gemappt wird, wird korrigiert. Es entsteht neu immer ein Array. -->
+                    <#if parsed?is_hash> <#-- ein einzelnes JSON-Objekt (STRUCTURE) -->
+                      <#list parsed?keys as key>
+                          <tr>
+                            <td>${key?string}</td>
+                            <td>${parsed[key]?string}</td>
+                          </tr>
+                      </#list>
+                    <#else> <#-- ein Array von JSON-Objekten (BAG/LIST OF STRUCTURE) -->
+                      <#list parsed as jsonObj>
+                        <#list jsonObj?keys as key>
+                          <tr>
+                            <td>${key?string}</td>
+                            <td>${jsonObj[key]?string}</td>
+                          </tr>
+                        </#list>
+                      </#list>
+                    </#if>
+                  <tbody>
+                </table>
+              </td>
             <#else>
               <td>${attribute.value}</td> 
             </#if>
@@ -58,45 +88,8 @@ will be called multiple times if there are various feature collections
       </#list>
     </tbody>
   </table>
-
-
-
-
-
-
   <br>
 </#list>
 
-<!--
-<table class="featureInfo">
-  <caption class="featureInfo">${type.name}</caption>
-  <tr>
-  <th>fid</th>
-<#list type.attributes as attribute>
-  <#if !attribute.isGeometry>
-    <th >${attribute.name}</th>
-  </#if>
-</#list>
-  </tr>
-
-<#assign odd = false>
-<#list features as feature>
-  <#if odd>
-    <tr class="odd">
-  <#else>
-    <tr>
-  </#if>
-  <#assign odd = !odd>
-
-  <td>${feature.fid} -- ${feature.type.title} -- gaga </td>    
-  <#list feature.attributes as attribute>
-    <#if !attribute.isGeometry>
-      <td>${attribute.value?string}</td>
-    </#if>
-  </#list>
-  </tr>
-</#list>
-</table>
--->
 <br/>
 

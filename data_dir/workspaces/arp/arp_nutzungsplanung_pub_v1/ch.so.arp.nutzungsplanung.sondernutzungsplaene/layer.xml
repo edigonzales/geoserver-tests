@@ -1,0 +1,17 @@
+<layer>
+  <name>ch.so.arp.nutzungsplanung.sondernutzungsplaene</name>
+  <id>LayerInfoImpl-8fa6d95:18ae167dc6e:-7ffb</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--570ae188:124761b8d78:-7fe0</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-8fa6d95:18ae167dc6e:-7ffc</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2023-09-29 16:50:16.702 UTC</dateCreated>
+  <dateModified>2023-09-29 17:29:25.227 UTC</dateModified>
+</layer>
