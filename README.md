@@ -7,10 +7,14 @@
 
 ## Workspaces
 
+GetCapabilities:
 - Mir noch nicht klar, ob man im GetCapabilities die Namespaces entfernen kann.
   * Soweit ich es verstehe, geht das nicht. Sie können entfernt werden im virtuellen Service. (Settings -> enabled ...)
 - GetMap funktioniert ohne diese.
 - Sonst ch.so.agi etc. als Namespace, damit man noch sortieren kann und es keine Redundanz im Layernamen gibt. 
+
+Data directory:
+- Was ist gekapselt an den Workspace? Was ist gekapselt an den Featuretype?
 
 ## Mehrere Geometriespalten
 Siehe agi_mopublic_pub Grundstücke. Wollen wir ja eh nicht mehr aber falls vorhanden, kann man es im SLD filtern.
@@ -261,15 +265,17 @@ In GeoServer als Layereigenschaft ("Restrict the features on layer by CQL filter
 typ_code_kt IN ('610', '611', '620') AND rechtsstatus = 'inKraft' AND publiziertab < now()
 ```
 
-## Namespaces
-- Was geht ganz ohne?
+Das `now()` habe ich überprüft mit der Strasse auf den Grenchenberg. Das Datum auf irgendwas in der Zukunft gesetzt und die Strasse erschien nicht mehr.
 
 ## Schemanamen ändern / umhängen
-
 - v1 -> v2 aber gleiche Layerdefinitionen?
 - Die gehen verloren, wenn man im Store das Schema ändert, auch wenn die Tabellennamen identisch sind? Man kann aber im XML einfach umhängen?
 
 ## SQL View
+- Man kann eine beliebige View definieren.
+- Wird aber nicht persistiert in der DB, sondern ist eher eine "Virtuelle Tabelle".
+- Öffnet natürlich Tür und Tor für allerlei Schabernack.
+- Könnte man erlauben für Spezialfälle **ABER** !!!! nur innerhalb der Tabelle oder maximal Schema.
 
 ## Format-Output Restrictions
 - Siehe WMS-Adminpage. 
