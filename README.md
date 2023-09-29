@@ -47,6 +47,20 @@ Verbesserung Geoserver:
 - Nicht löschen, sondern disablen
 
 
+### Fall 1
+
+### Fall 2
+
+### Fall ...
+
+### Automatisch JSON 
+
+- siehe AV-Mutationen. 
+- Hier mit NPL-Grundnutzung.
+- JSON-Handling im eigenen Root-Template
+
+
+
 **todo** JSON
 
 
@@ -103,10 +117,29 @@ Aus SIMI:
 
 ## Zeilen filtern
 
+Sondernutzungspläne:
+
+QML: Wie geht now()??
+```
+
+    <rules key="{3ba25132-e4de-47d7-87d9-45e48a5ceb8e}">
+      <rule scalemaxdenom="39000" filter=" &quot;typ_code_kt&quot; = '610' AND  &quot;rechtsstatus&quot; = 'inKraft'   AND  (&quot;publiziertab&quot; &lt;= to_date(now()))" key="{5364eb01-c5fc-4a82-833d-c120da841c9b}" symbol="0" scalemindenom="1" label="Perimeter kantonaler Nutzungsplan"/>
+      <rule scalemaxdenom="39000" filter=" &quot;typ_code_kt&quot; = '611' AND  &quot;rechtsstatus&quot; = 'inKraft'   AND  (&quot;publiziertab&quot; &lt;= to_date(now()))" key="{1e5a550d-b85c-4423-aa12-b0100d1aef94}" symbol="1" scalemindenom="1" label="Perimeter kommunaler Gestaltungsplan"/>
+      <rule scalemaxdenom="39000" filter=" &quot;typ_code_kt&quot; = '620' AND  &quot;rechtsstatus&quot; = 'inKraft'   AND  (&quot;publiziertab&quot; &lt;= to_date(now()))" key="{424ce0e7-1956-4c9e-80f2-dcb46d98f0bf}" symbol="2" scalemindenom="1" label="Perimeter Gestaltungsplanpflicht"/>
+    </rules>
+```
+
 
 ## Namespaces
 - Was geht ganz ohne?
 
+## Schemanamen ändern / umhängen
+
+- v1 -> v2 aber gleiche Layerdefinitionen?
+- Die gehen verloren, wenn man im Store das Schema ändert, auch wenn die Tabellennamen identisch sind? Man kann aber im XML einfach umhängen?
+
+## SQL View
 
 ## REST
+
 
