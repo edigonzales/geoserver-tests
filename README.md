@@ -34,18 +34,17 @@ Im Featuretype kann man bereits vieles konfigurieren:
 - Neues Attribute, z.B. für Objektblatt (dynamische Werte werden in den Templates berechnet). Oder aber man kann direkt im Featuretype auf Werte zurückgreifen (Link zu Intercapi).
 - Raster: Hier wird es bissle frickliger. Man könnte mit Rastertemplates arbeiten resp. man muss ColorMaps verwendend und dann mit dem Custom Name arbeiten. Oder man missbraucht den Bandnamen (der aber keine Leerzeichen und Sonderzeichen erlaubt).
 
-Templates für HTML- und JSON-Output sorgen für den Rest. 
+Templates für HTML- und JSON-Output sorgen für den Rest. In einem Web GIS Client würde wohl der JSON-Output zum Zuge kommen, da dort die Geoemtrie drin steckt. D.h. der Client muss mittels Javascript das JSON zu HTML rendern.
 
-Datumformatierung scheint mir viele Stellschrauben zu haben. Wahrscheinlich einfacher/robuster, wenn es beim Featuretype passiert. Da kann weiss man ja was man hat (Timestamp, nur Datum, ...).
+- Eventuell kann man auch noch Makros o.ä. schreiben, damit man z.B. für Custom Templates nicht immer den Click-Punkt berechnen muss (wenn man ihn braucht).
+- Datumformatierung scheint mir viele Stellschrauben zu haben. Wahrscheinlich einfacher/robuster, wenn es beim Featuretype passiert. Da kann weiss man ja was man hat (Timestamp, nur Datum, ...).
 
-Idee Custom Layerinfo: Statischer Methodenaufruf im GeoJson-Template. Die Methode liefert html und map mit Werten zurück. Dann kann immer gewählt werden, ob html oder die Werte vom Web GIS Client gerendert werden. Die Werte sind in den Standard-Properties. Das html ist escaped in einem Root-Feld (wie der Titel).
+TODO: Idee Custom Layerinfo: Statischer Methodenaufruf im GeoJson-Template. Die Methode liefert html und map mit Werten zurück. Dann kann immer gewählt werden, ob html oder die Werte vom Web GIS Client gerendert werden. Die Werte sind in den Standard-Properties. Das html ist escaped in einem Root-Feld (wie der Titel).
 
-Eventuell kann man auch noch Makros o.ä. schreiben, damit man z.B. für Custom Templates nicht immer den Click-Punkt berechnen muss (wenn man ihn braucht).
 
-Verbesserung Geoserver:
+Verbesserungen Geoserver:
 - Reihenfolge ändern (drag n drop)
 - Nicht löschen, sondern disablen
-
 
 ### Fall 1
 
