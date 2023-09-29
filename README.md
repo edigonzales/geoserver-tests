@@ -101,8 +101,6 @@ Beispiel:
 http://localhost/geoserver/agi/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image%2Fpng&TRANSPARENT=true&QUERY_LAYERS=agi%3Ainvntr_hhtsgrnzen_kantonsgrenzstein&STYLES&LAYERS=agi%3Ainvntr_hhtsgrnzen_kantonsgrenzstein&exceptions=application%2Fvnd.ogc.se_inimage&INFO_FORMAT=text%2Fhtml&FEATURE_COUNT=50&X=50&Y=50&SRS=EPSG%3A2056&WIDTH=101&HEIGHT=101&BBOX=2616029.2107360745%2C1220585.024665918%2C2619884.959512502%2C1224440.7734423454
 ```
 
-### Fall ...
-
 ### Spezielles Template (inkl. JSON-Objekte)
 
 Ausgangslage:
@@ -112,6 +110,11 @@ Lösung:
 - Template für Layer erstellen.
 - Template liegt bei Layer (Featuretype)
 - Template hat Einfluss auf normales GetFeaturInfo (nicht nur im Web GIS Client)
+
+
+TODO...
+
+
 
 ### Automatisch JSON 
 
@@ -123,9 +126,16 @@ Lösung:
 - JSON-Handling in unserem Root-Template, also für Anwender unsichtbar und er muss nichts machen.
 
 Herausforderung:
-- Einen wirklichen JSON-Typ kennt Geoserver nicht. Ist ein String.
+- Einen wirklichen JSON-Typ kennt Geoserver nicht. Ist ein String. Handling muss alles in Freemarker gemacht werden.
 - Wird somit schwierig zu erkennen im Template.
 - starts_with("[{\"") etc.
+- Man könnte eventuell auch eine JSON-Utility-Klasse schreiben und bereitstellen. Man spart sich dabei vielleicht Code (z.B. keine Unterscheidung Objekt vs Liste).
+
+### Fall Pythonmodul
+
+https://github.com/sogis/layerinfo_modules/blob/master/heatdrill/src/heatdrill/layer_info.py
+
+### Fall SQL-Query
 
 
 
