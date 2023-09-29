@@ -114,6 +114,71 @@ Aus SIMI:
 </table>
 ```
 
+EWS:
+```
+{% macro formatBool(val) -%}
+  {% if val is true %}
+      {{ 'Ja' }}
+  {% elif val is false %}
+      {{ 'Nein' }}
+  {% endif %}
+{%- endmacro %}
+{% macro formatArray(val) -%}
+  {% for row in val %}
+    {{ row }} </br>
+  {% endfor %}
+{%- endmacro %}
+{% macro formatNull(val) -%}
+  {% if val %}
+    {{ val }} </br>
+  {% endif %}
+{%- endmacro %}
+<table class="attribute-list">
+  <tbody>
+    <tr>
+      <td class="identify-attr-title wrap"><i>Bohrung erlaubt:</i></td>
+      <td class="identify-attr-title wrap">{{ formatBool(feature.permitted) }}</td>
+    </tr>
+    <tr>
+      <td class="identify-attr-title wrap"><i>Bohrtiefe:</i></td>
+      <td class="identify-attr-title wrap">{{ formatNull(feature.depth) }}</td>
+    </tr>
+    <tr>
+      <td class="identify-attr-title wrap"><i>Koordinaten:</i></td>
+      <td class="identify-attr-title wrap">{{ feature.x }} / {{ feature.y }}</td>
+    </tr>
+    <tr>
+      <td class="identify-attr-title wrap"><i>Gewässcherschutz betroffen:</i></td>
+      <td class="identify-attr-title wrap">{{ formatBool(feature.gwsZone) }}</td>
+    </tr>
+    <tr>
+      <td class="identify-attr-title wrap"><i>Grundwasservorkommen:</i></td>
+      <td class="identify-attr-title wrap">{{ formatBool(feature.gwPresent) }}</td>
+    </tr>
+    <tr>
+      <td class="identify-attr-title wrap"><i>Quellen:</i></td>
+      <td class="identify-attr-title wrap">{{ formatBool(feature.spring) }}</td>
+    </tr>
+    <tr>
+      <td class="identify-attr-title wrap"><i>Gewaesserraum:</i></td>
+      <td class="identify-attr-title wrap">{{ formatBool(feature.gwRoom) }}</td>
+    </tr>
+    <tr>
+      <td class="identify-attr-title wrap"><i>Belasteter Standort:</i></td>
+      <td class="identify-attr-title wrap">{{ formatBool(feature.wasteSite) }}</td>
+    </tr>
+    <tr>
+      <td class="identify-attr-title wrap"><i>Rutschung:</i></td>
+      <td class="identify-attr-title wrap">{{ formatBool(feature.landslide) }}</td>
+    </tr>
+    <tr>
+      <td class="identify-attr-title wrap"><i>Detailinformationen:</i></td>
+      <td class="identify-attr-title wrap">{{ formatArray(feature.infoTextRows) }}</td>
+    </tr>
+  </tbody>
+</table>
+```
+
 
 ## Zeilen filtern
 
