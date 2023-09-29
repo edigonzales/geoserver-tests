@@ -35,7 +35,7 @@ Templates für HTML- und JSON-Output sorgen für den Rest. In einem Web GIS Clie
 - Die Aliasnamen sind nicht Aliasnamen, sondern überschreiben die eigentlichen Attributnamen. D.h. WFS-/XML-Output ist dann oftmals Geschichte, weil nicht mehr wohlgeformed. D.h. FeatureInfo-Output muss JSON oder HTML sein. Für Dataservices muss ebenfalls ein "data"-Featuretype publiziert werden (analog wie heute)
 
 Verbesserungen Prototyp:
-- Makros (gibt es glaub) für die Rechnerei des Klick-Péunktes
+- Makros (gibt es glaub) für die Rechnerei des Klick-Punktes
 - Datumformatierung: Überlegen, ob immer direkt beim Featurtype und nichts mehr im Template machen. Beim Featuretype weiss man m.E. besser was man hat (Timestamp, nur Datum, ...)
 
 Verbesserungen Geoserver:
