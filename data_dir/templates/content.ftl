@@ -34,6 +34,11 @@ will be called multiple times if there are various feature collections
               <td>${attribute.rawValue?date?string["dd.MM.yyyy"]}</td>
             <#elseif (attribute.value?string?lower_case?ends_with("jpg")) || (attribute.value?string?lower_case?ends_with("png"))>
               <td><a href="${attribute.value}" target="_blank"> <img src="${attribute.value}"/></a></td>
+            <#-- Muss doch noch mehr Bedingungen geben, oder? Es müssen die Platzhalter vorhanden sein? 
+            Ah, nein. Es wird zwar gerechnet, aber einfach nichts replaced. Darum funktionierts. -->
+            <#-- Die Berechnung ist aufwändiger. Hier ist nur der ol3-Spezialfall mit diesen 100 und 50 Pixel. Also immer
+            die Mitte.-->
+
             <#elseif attribute.value?starts_with("http")>
               <#assign xx = request.BBOX?remove_beginning("SRSEnvelope[")?remove_ending("]")?split(",")[0]>
               <#assign yy = request.BBOX?remove_beginning("SRSEnvelope[")?remove_ending("]")?split(",")[1]>

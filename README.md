@@ -22,6 +22,8 @@ Siehe agi_mopublic_pub Grundstücke. Wollen wir ja eh nicht mehr aber falls vorh
 ## JNDI
 Siehe https://github.com/edigonzales/docker-geoserver. Die _context.xml_-Datei wird reingebrannt. Siehe auch die Links wegen Env Vars, um Credentials zu injecten.
 
+**TODO**: Sensible Info als Env Var. Funktioniert. Irgendwo habe ich einen Bookmark.
+
 ## GetFeatureInfo
 
 Im Featuretype kann man bereits vieles konfigurieren:
@@ -35,7 +37,7 @@ Im Featuretype kann man bereits vieles konfigurieren:
 Templates für HTML- und JSON-Output sorgen für den Rest. In einem Web GIS Client würde wohl der JSON-Output zum Zuge kommen, da dort die Geoemtrie drin steckt. D.h. der Client muss mittels Javascript das JSON zu HTML rendern. 
 
 **Achtung:**
-- Die Templates wirken immer auf das "normale" GetFeatureInfo. Nicht nur die Objektabfrage im Web GIS Client (so wie heute).
+- Die Templates wirken immer auf das "normale" GetFeatureInfo. Nicht nur auf die Objektabfrage im Web GIS Client (so wie heute).
 - Die Aliasnamen sind nicht Aliasnamen, sondern überschreiben die eigentlichen Attributnamen. D.h. WFS-/XML-Output ist dann oftmals Geschichte, weil nicht mehr wohlgeformed. D.h. FeatureInfo-Output muss JSON oder HTML sein. Für Dataservices muss ebenfalls ein "data"-Featuretype publiziert werden (analog wie heute)
 
 Verbesserungen Prototyp:
@@ -76,6 +78,8 @@ Lösung:
 - Ähnlich wie Zusätzlicher HTML-Link
 - Im Template muss jedoch gerechnet werden, um Klickpunkt zu eruieren und als Query-Parameter dem Objektblattaufruf zu übergeben.
 
+**Achtung:** Die Berechnung von x/y stimmt nur für ol3-Beispiele. Dieses komische 100 Pixel und 50 Pixel Konstrukt ist nicht generisch. Ggf. ein Grund mehr auch diese Rechnerei in eine statische Methode auszulagern: getXYFromRequest().
+
 Beispiel:
 
 HTML:
@@ -110,11 +114,14 @@ Lösung:
 - Template für Layer erstellen.
 - Template liegt bei Layer (Featuretype)
 - Template hat Einfluss auf normales GetFeaturInfo (nicht nur im Web GIS Client)
+- Nicht ganz identisch zur heutigen Lösung. Die RRB werden einzeln gelistet. Nicht gruppiert.
+- Achtung: Ein paar Edgecases wurde ignoriert (e.g. kein Titel, nur ein Dokument etc.). Bei dienen fliegt es noch um die Ohren.
 
 
-TODO...
-
-
+Beispiel:
+```
+http://localhost/geoserver/arp/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image%2Fpng&TRANSPARENT=true&QUERY_LAYERS=arp%3Ach.so.arp.nutzungsplanung.sondernutzungsplaene&STYLES&LAYERS=arp%3Ach.so.arp.nutzungsplanung.sondernutzungsplaene&exceptions=application%2Fvnd.ogc.se_inimage&INFO_FORMAT=text%2Fhtml&FEATURE_COUNT=50&X=50&Y=50&SRS=EPSG%3A2056&WIDTH=101&HEIGHT=101&BBOX=2596890.258904044%2C1226760.8845875326%2C2596920.38194136%2C1226791.0076248485
+```
 
 ### Automatisch JSON 
 
@@ -133,128 +140,50 @@ Herausforderung:
 
 ### Fall Pythonmodul
 
+Kann m.E. gleich gelöst werden wie der Fall "SQL-Query". Muss Interface implementieren (bei Bedarf abstrakte Klasse erweitern): Methodensignatur und Rückgabewert. Ein Repo mit den Java-Modulen, die dann für das neue Int-Deployment reingebrannt werden (das neue Int-Deployment muss nicht super schnell sein, da Dev-Deployment funktinioniert).
+
 https://github.com/sogis/layerinfo_modules/blob/master/heatdrill/src/heatdrill/layer_info.py
 
 ### Fall SQL-Query
 
+**Achtung:**: Im Dockerfile steht `-Dorg.geoserver.htmlTemplates.staticMemberAccess=*"`. So sind alle statischen Methoden verfügbar. 
 
+Ausgangslage:
+- Es soll beliebiges SQL ausgeführt werden können. Input sind die geklickten Koordinaten.
+- Z.B. heute bei den Fixpunkten.
 
+Lösung:
+- Eigener Java-Code, der eine SQL-Query (aus einer Datei) liest und ausführt.
+- Connections von JNDI (Funktioniert auch beim Entwickeln)
+- Rückgabewert List<Map<String,Object>>
+- Geometrieattribut muss immer "geometrie" heissen und ist GeoJSON
+- Beispiel ist für HTML-Template. Ich denke, sinnvoller wäre es auf JSON-Templates zu setzen, da dann nur einmal mit der Formatierung gekämpft werden muss.
+- Das Template ist fast generisch, nur der Methodenaufruf muss geändert werden mit dem Namen des Layers. D.h. ist also doch bissle copy/paste.
+- Die SQL-Datei liegt im Data-Directory unter einem neuen Verzeichnis "layerinfo_sql".
+- Java-Abhängigkeiten: Java-pur. Falls 3rd party libs, müssen diese auch deployed werden. Kann zu Konflikten führen.
+- Bringt es etwas, wenn man das gleicn Datenmodell (für die Templates) wie GeoServer verwenden würde (wo finde ich diese?)?. 
 
-Aus SIMI:
+SQL:
 ```
-<table class="attribute-list">
-    <tbody>
-        {% set count_rrb = namespace(count = 0) %}
-        {% for dokument in feature.dokumente %}
-            {% if dokument.Titel == 'Regierungsratsbeschluss' %}
-                {% set count_rrb.count = count_rrb.count + 1 %}
-            {% endif %}
-        {% endfor %}
-        {% set count_rrb_2 = count_rrb.count * 2 %}
-        
-        {% set publiziertAb_list = feature.publiziertab.split('-') %}
-	    <tr>
-            <td class="identify-attr-title wrap"><i>Typ-Bezeichnung:</i></td>
-            <td class="identify-attr-value wrap">{{ feature.typ_bezeichnung }} </td>
-        </tr>
-        <tr>
-            <td class="identify-attr-title wrap"><i>In Kraft:</i></td>
-            <td class="identify-attr-value wrap">{{ feature.publiziertab }}</td>
-        </tr>
-        {% for dokument in feature.dokumente %}
-            {% if dokument.Titel != 'Regierungsratsbeschluss' %}
-                <tr>
-                    <td class="identify-attr-title wrap"><i>{{ dokument.Titel }}:</i></td>
-                    {% if dokument.Titel is none %}
-                        <td class="identify-attr-value wrap" style="padding-left: 0;padding-right: 0.25em;"><a href={{ dokument.TextimWeb }} target="_blank">{{ dokument.Titel }}</a></td> 
-                    {% else %}
-                        <td class="identify-attr-value wrap" style="padding-left: 0;padding-right: 0.25em;"><a href={{ dokument.TextimWeb }} target="_blank">{{ dokument.OffiziellerTitel }}</a></td>
-                    {% endif %}
-                </tr>
-            {% endif %}
-        {% endfor %}
-        {% if feature.typ_bezeichnung != 'Wald' %}
-        <tr>
-            <td class="identify-attr-title wrap" rowspan={{ count_rrb_2 }}><i>Regierungsratsbeschluss:</i></td>
-            {% for dokument in feature.dokumente %}
-                {% if dokument.Titel == 'Regierungsratsbeschluss' %}
-                    {% set publiziertAb_list = dokument.publiziertAb.split('-') %}
-                        <td class="identify-attr-value wrap" style="padding-left: 0;padding-right: 0.25em;"><a href={{ dokument.TextimWeb }} target="_blank">RRB {{ dokument.OffizielleNr }}</a> vom {{ publiziertAb_list[2] }}.{{publiziertAb_list[1] }}.{{ publiziertAb_list[0] }} <br>{{ dokument.OffiziellerTitel }}</td>
-                    </tr>
-                    <tr>
-                {% endif %}
-            {% endfor %}
-        </tr>
-        {% endif %}
-    </tbody>
-</table>
+SELECT
+    hoehe,
+    punktzeichen_txt AS "Punktzeichen",
+    typ_txt AS "Kategorie",
+    nummer as "Fixpunktnummer",
+    ST_X(geometrie) AS "Ost",
+    ST_Y(geometrie) AS "Nord",
+    t_id AS t_id,
+    ST_AsGeoJSON(geometrie) AS geometrie
+FROM
+    agi_mopublic_pub.mopublic_fixpunkt
+WHERE 
+    ST_Intersects(geometrie, ST_Buffer(ST_GeomFromText('POINT(:x :y)', 2056), :resolution * :TOLERANCE_IN_PIXEL))
 ```
 
-EWS:
+Beispiel:
 ```
-{% macro formatBool(val) -%}
-  {% if val is true %}
-      {{ 'Ja' }}
-  {% elif val is false %}
-      {{ 'Nein' }}
-  {% endif %}
-{%- endmacro %}
-{% macro formatArray(val) -%}
-  {% for row in val %}
-    {{ row }} </br>
-  {% endfor %}
-{%- endmacro %}
-{% macro formatNull(val) -%}
-  {% if val %}
-    {{ val }} </br>
-  {% endif %}
-{%- endmacro %}
-<table class="attribute-list">
-  <tbody>
-    <tr>
-      <td class="identify-attr-title wrap"><i>Bohrung erlaubt:</i></td>
-      <td class="identify-attr-title wrap">{{ formatBool(feature.permitted) }}</td>
-    </tr>
-    <tr>
-      <td class="identify-attr-title wrap"><i>Bohrtiefe:</i></td>
-      <td class="identify-attr-title wrap">{{ formatNull(feature.depth) }}</td>
-    </tr>
-    <tr>
-      <td class="identify-attr-title wrap"><i>Koordinaten:</i></td>
-      <td class="identify-attr-title wrap">{{ feature.x }} / {{ feature.y }}</td>
-    </tr>
-    <tr>
-      <td class="identify-attr-title wrap"><i>Gewässcherschutz betroffen:</i></td>
-      <td class="identify-attr-title wrap">{{ formatBool(feature.gwsZone) }}</td>
-    </tr>
-    <tr>
-      <td class="identify-attr-title wrap"><i>Grundwasservorkommen:</i></td>
-      <td class="identify-attr-title wrap">{{ formatBool(feature.gwPresent) }}</td>
-    </tr>
-    <tr>
-      <td class="identify-attr-title wrap"><i>Quellen:</i></td>
-      <td class="identify-attr-title wrap">{{ formatBool(feature.spring) }}</td>
-    </tr>
-    <tr>
-      <td class="identify-attr-title wrap"><i>Gewaesserraum:</i></td>
-      <td class="identify-attr-title wrap">{{ formatBool(feature.gwRoom) }}</td>
-    </tr>
-    <tr>
-      <td class="identify-attr-title wrap"><i>Belasteter Standort:</i></td>
-      <td class="identify-attr-title wrap">{{ formatBool(feature.wasteSite) }}</td>
-    </tr>
-    <tr>
-      <td class="identify-attr-title wrap"><i>Rutschung:</i></td>
-      <td class="identify-attr-title wrap">{{ formatBool(feature.landslide) }}</td>
-    </tr>
-    <tr>
-      <td class="identify-attr-title wrap"><i>Detailinformationen:</i></td>
-      <td class="identify-attr-title wrap">{{ formatArray(feature.infoTextRows) }}</td>
-    </tr>
-  </tbody>
-</table>
+http://localhost/geoserver/agi/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image%2Fpng&TRANSPARENT=true&QUERY_LAYERS=agi%3Ach.so.agi.av.fixpunkte&STYLES&LAYERS=agi%3Ach.so.agi.av.fixpunkte&exceptions=application%2Fvnd.ogc.se_inimage&INFO_FORMAT=text%2Fhtml&FEATURE_COUNT=50&X=50&Y=50&SRS=EPSG%3A2056&WIDTH=101&HEIGHT=101&BBOX=2596897.7081112145%2C1225435.868221151%2C2597138.6924097408%2C1225676.8525196777
 ```
-
 
 ## Zeilen filtern
 
