@@ -69,6 +69,10 @@ services:
     image: sogis/geoserver:2.23.2
     environment:
       TZ: Europe/Zurich
+      DB_USER_PUB: ddluser
+      DB_PWD_PUB: ddluser
+      DB_USER_EDIT: ddluser
+      DB_PWD_EDIT: ddluser
       # LANG: de_CH.UTF-8
       # LANGUAGE: de_CH:de
       # LC_ALL: de_CH.UTF-8
