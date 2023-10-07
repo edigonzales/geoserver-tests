@@ -20,9 +20,7 @@ Data directory:
 Siehe agi_mopublic_pub Grundstücke. Wollen wir ja eh nicht mehr aber falls vorhanden, kann man es im SLD filtern.
 
 ## JNDI
-Siehe https://github.com/edigonzales/docker-geoserver. Die _context.xml_-Datei wird reingebrannt. Siehe auch die Links wegen Env Vars, um Credentials zu injecten.
-
-**TODO**: Sensible Info als Env Var. Funktioniert. Irgendwo habe ich einen Bookmark.
+Siehe https://github.com/edigonzales/docker-geoserver. Die _context.xml_-Datei wird reingebrannt. Credentials können als Env Vars injected werden. Dazu muss Tomcat mit `-Dorg.apache.tomcat.util.digester.PROPERTY_SOURCE=org.apache.tomcat.util.digester.EnvironmentPropertySource` (siehe Dockerfile) gestartet werden.
 
 ## GetFeatureInfo
 
