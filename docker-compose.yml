@@ -19,29 +19,29 @@ services:
       - type: bind
         source: ${TMP:-/tmp}
         target: /gretl-share
-  edit-db:
-    image: bitnami/postgresql:14.8.0-debian-11-r74
-    environment:
-      TZ: Europe/Zurich
-      POSTGRESQL_DATABASE: edit
-      POSTGRESQL_USERNAME: ddluser
-      POSTGRESQL_PASSWORD: ddluser
-      POSTGRESQL_POSTGRES_PASSWORD: secret
-      POSTGRESQL_INITSCRIPTS_USERNAME: postgres
-      POSTGRESQL_INITSCRIPTS_PASSWORD: secret
-      #POSTGRESQL_INITDB_ARGS: --locale=de_CH.UTF-8
-    ports:
-      - "54321:5432"
-    volumes:
-      - type: bind
-        source: ./docker-compose/preinitdb.d
-        target: /docker-entrypoint-preinitdb.d
-      - type: bind
-        source: ./docker-compose/initdb.d
-        target: /docker-entrypoint-initdb.d
-      - type: volume
-        source: postgresql_data_edit
-        target: /bitnami/postgresql
+  # edit-db:
+  #   image: bitnami/postgresql:14.8.0-debian-11-r74
+  #   environment:
+  #     TZ: Europe/Zurich
+  #     POSTGRESQL_DATABASE: edit
+  #     POSTGRESQL_USERNAME: ddluser
+  #     POSTGRESQL_PASSWORD: ddluser
+  #     POSTGRESQL_POSTGRES_PASSWORD: secret
+  #     POSTGRESQL_INITSCRIPTS_USERNAME: postgres
+  #     POSTGRESQL_INITSCRIPTS_PASSWORD: secret
+  #     #POSTGRESQL_INITDB_ARGS: --locale=de_CH.UTF-8
+  #   ports:
+  #     - "54321:5432"
+  #   volumes:
+  #     - type: bind
+  #       source: ./docker-compose/preinitdb.d
+  #       target: /docker-entrypoint-preinitdb.d
+  #     - type: bind
+  #       source: ./docker-compose/initdb.d
+  #       target: /docker-entrypoint-initdb.d
+  #     - type: volume
+  #       source: postgresql_data_edit
+  #       target: /bitnami/postgresql
   pub-db:
     image: bitnami/postgresql:14.8.0-debian-11-r74
     environment:
@@ -100,3 +100,4 @@ services:
 volumes:
   postgresql_data_edit:
   postgresql_data_pub:
+  jenkins_home:
