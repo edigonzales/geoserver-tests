@@ -65,38 +65,50 @@ services:
       - type: volume
         source: postgresql_data_pub
         target: /bitnami/postgresql
-  geoserver:
-    image: sogis/geoserver:2.23.2
+  jenkins:
+    image: sogis/jenkins:lts
     environment:
       TZ: Europe/Zurich
-      DB_USER_PUB: ddluser
-      DB_PWD_PUB: ddluser
-      DB_USER_EDIT: ddluser
-      DB_PWD_EDIT: ddluser
-      # LANG: de_CH.UTF-8
-      # LANGUAGE: de_CH:de
-      # LC_ALL: de_CH.UTF-8
     ports:
-      - "80:8080"
+      - "8081:8080"
     volumes:
-      - type: bind
-        source: ./data_dir
-        target: /usr/local/geoserver/data
-    depends_on:
-      - pub-db
-      - edit-db
-  dozzle:
-    container_name: dozzle
-    image: amir20/dozzle:latest
-    environment:
-      TZ: Europe/Zurich
-    # environment:
-    #   DOZZLE_USERNAME: admin
-    #   DOZZLE_PASSWORD: admin
-    volumes:
+      - type: volume
+        source: jenkins_home
+        target: /var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
-    ports:
-      - 9999:8080
+
+  # geoserver:
+  #   image: sogis/geoserver:2.23.2
+  #   environment:
+  #     TZ: Europe/Zurich
+  #     DB_USER_PUB: ddluser
+  #     DB_PWD_PUB: ddluser
+  #     DB_USER_EDIT: ddluser
+  #     DB_PWD_EDIT: ddluser
+  #     # LANG: de_CH.UTF-8
+  #     # LANGUAGE: de_CH:de
+  #     # LC_ALL: de_CH.UTF-8
+  #   ports:
+  #     - "80:8080"
+  #   volumes:
+  #     - type: bind
+  #       source: ./data_dir
+  #       target: /usr/local/geoserver/data
+  #   depends_on:
+  #     - pub-db
+  #     - edit-db
+  # dozzle:
+  #   container_name: dozzle
+  #   image: amir20/dozzle:latest
+  #   environment:
+  #     TZ: Europe/Zurich
+  #   # environment:
+  #   #   DOZZLE_USERNAME: admin
+  #   #   DOZZLE_PASSWORD: admin
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #   ports:
+  #     - 9999:8080
 volumes:
   postgresql_data_edit:
   postgresql_data_pub:
