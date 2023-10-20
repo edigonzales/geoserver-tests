@@ -1,47 +1,54 @@
+networks:
+  backend:
+    name: jenkins-backend
+    driver: bridge
 services:
-  gretl:
-    image: sogis/gretl:${GRETL_IMAGE_TAG:-2.2.373}
-    profiles: ["app"]
-    environment:
-      TZ: Europe/Zurich
-      ORG_GRADLE_PROJECT_gretlEnvironment: development
-    entrypoint: ["gretl", "--project-cache-dir=/home/gradle/projectcache"]
-    volumes:
-      - type: bind
-        source: $HOME/gretljobs.properties
-        target: /home/gradle/.gradle/gradle.properties
-      - type: bind
-        source: .
-        target: /home/gradle/project
-      - type: bind
-        source: ../schema-jobs
-        target: /home/gradle/schema-jobs
-      - type: bind
-        source: ${TMP:-/tmp}
-        target: /gretl-share
-  # edit-db:
-  #   image: bitnami/postgresql:14.8.0-debian-11-r74
+  # gretl:
+  #   image: sogis/gretl:${GRETL_IMAGE_TAG:-2.2.373}
+  #   profiles: ["app"]
   #   environment:
   #     TZ: Europe/Zurich
-  #     POSTGRESQL_DATABASE: edit
-  #     POSTGRESQL_USERNAME: ddluser
-  #     POSTGRESQL_PASSWORD: ddluser
-  #     POSTGRESQL_POSTGRES_PASSWORD: secret
-  #     POSTGRESQL_INITSCRIPTS_USERNAME: postgres
-  #     POSTGRESQL_INITSCRIPTS_PASSWORD: secret
-  #     #POSTGRESQL_INITDB_ARGS: --locale=de_CH.UTF-8
-  #   ports:
-  #     - "54321:5432"
+  #     ORG_GRADLE_PROJECT_gretlEnvironment: development
+  #   entrypoint: ["gretl", "--project-cache-dir=/home/gradle/projectcache"]
   #   volumes:
   #     - type: bind
-  #       source: ./docker-compose/preinitdb.d
-  #       target: /docker-entrypoint-preinitdb.d
+  #       source: $HOME/gretljobs.properties
+  #       target: /home/gradle/.gradle/gradle.properties
   #     - type: bind
-  #       source: ./docker-compose/initdb.d
-  #       target: /docker-entrypoint-initdb.d
-  #     - type: volume
-  #       source: postgresql_data_edit
-  #       target: /bitnami/postgresql
+  #       source: .
+  #       target: /home/gradle/project
+  #     - type: bind
+  #       source: ../schema-jobs
+  #       target: /home/gradle/schema-jobs
+  #     - type: bind
+  #       source: ${TMP:-/tmp}
+  #       target: /gretl-share
+  #   networks:
+  #     - custom_network
+
+#   # edit-db:
+#   #   image: bitnami/postgresql:14.8.0-debian-11-r74
+#   #   environment:
+#   #     TZ: Europe/Zurich
+#   #     POSTGRESQL_DATABASE: edit
+#   #     POSTGRESQL_USERNAME: ddluser
+#   #     POSTGRESQL_PASSWORD: ddluser
+#   #     POSTGRESQL_POSTGRES_PASSWORD: secret
+#   #     POSTGRESQL_INITSCRIPTS_USERNAME: postgres
+#   #     POSTGRESQL_INITSCRIPTS_PASSWORD: secret
+#   #     #POSTGRESQL_INITDB_ARGS: --locale=de_CH.UTF-8
+#   #   ports:
+#   #     - "54321:5432"
+#   #   volumes:
+#   #     - type: bind
+#   #       source: ./docker-compose/preinitdb.d
+#   #       target: /docker-entrypoint-preinitdb.d
+#   #     - type: bind
+#   #       source: ./docker-compose/initdb.d
+#   #       target: /docker-entrypoint-initdb.d
+#   #     - type: volume
+#   #       source: postgresql_data_edit
+#   #       target: /bitnami/postgresql
   pub-db:
     image: bitnami/postgresql:14.8.0-debian-11-r74
     environment:
@@ -65,6 +72,9 @@ services:
       - type: volume
         source: postgresql_data_pub
         target: /bitnami/postgresql
+    networks:
+      - backend
+
   jenkins:
     image: sogis/jenkins:lts
     environment:
@@ -76,40 +86,44 @@ services:
         source: jenkins_home
         target: /var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - backend
 
-  # geoserver:
-  #   image: sogis/geoserver:2.23.2
-  #   environment:
-  #     TZ: Europe/Zurich
-  #     DB_USER_PUB: ddluser
-  #     DB_PWD_PUB: ddluser
-  #     DB_USER_EDIT: ddluser
-  #     DB_PWD_EDIT: ddluser
-  #     # LANG: de_CH.UTF-8
-  #     # LANGUAGE: de_CH:de
-  #     # LC_ALL: de_CH.UTF-8
-  #   ports:
-  #     - "80:8080"
-  #   volumes:
-  #     - type: bind
-  #       source: ./data_dir
-  #       target: /usr/local/geoserver/data
-  #   depends_on:
-  #     - pub-db
-  #     - edit-db
-  # dozzle:
-  #   container_name: dozzle
-  #   image: amir20/dozzle:latest
-  #   environment:
-  #     TZ: Europe/Zurich
-  #   # environment:
-  #   #   DOZZLE_USERNAME: admin
-  #   #   DOZZLE_PASSWORD: admin
-  #   volumes:
-  #     - /var/run/docker.sock:/var/run/docker.sock
-  #   ports:
-  #     - 9999:8080
+
+#   # geoserver:
+#   #   image: sogis/geoserver:2.23.2
+#   #   environment:
+#   #     TZ: Europe/Zurich
+#   #     DB_USER_PUB: ddluser
+#   #     DB_PWD_PUB: ddluser
+#   #     DB_USER_EDIT: ddluser
+#   #     DB_PWD_EDIT: ddluser
+#   #     # LANG: de_CH.UTF-8
+#   #     # LANGUAGE: de_CH:de
+#   #     # LC_ALL: de_CH.UTF-8
+#   #   ports:
+#   #     - "80:8080"
+#   #   volumes:
+#   #     - type: bind
+#   #       source: ./data_dir
+#   #       target: /usr/local/geoserver/data
+#   #   depends_on:
+#   #     - pub-db
+#   #     - edit-db
+#   # dozzle:
+#   #   container_name: dozzle
+#   #   image: amir20/dozzle:latest
+#   #   environment:
+#   #     TZ: Europe/Zurich
+#   #   # environment:
+#   #   #   DOZZLE_USERNAME: admin
+#   #   #   DOZZLE_PASSWORD: admin
+#   #   volumes:
+#   #     - /var/run/docker.sock:/var/run/docker.sock
+#   #   ports:
+#   #     - 9999:8080
 volumes:
   postgresql_data_edit:
   postgresql_data_pub:
   jenkins_home:
+
