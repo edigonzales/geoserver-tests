@@ -5,7 +5,31 @@
 - Doku:
  * Import pub-db Volumen from Image
 
-## Workspaces
+## Credentials / Config
+
+### Jenkins
+- gretljob.properties als "secret file"
+- jenkins_home: Entweder als geschütztes Gitrepo (war nicht einchecken, plugins?) oder als tar.gz backupen
+
+### Datenbank
+Mit .env-File und dann referenzieren in compose-File:
+
+```
+POSTGRESQL_PASSWORD=lksdjf09783lkjadsf
+```
+
+```
+POSTGRESQL_PASSWORD: ${POSTGRESQL_PASSWORD}
+```
+
+TODO: Der dmluser müsste man in einem Shellscript noch so verändern, dass man das Passwort setzen kann.
+
+### Geoserver
+Siehe auch "JNDI". Somit auch mittels .env-File. TODO: Hamen harmonisieren.
+
+## Testfälle
+
+### Workspaces
 
 GetCapabilities:
 - Mir noch nicht klar, ob man im GetCapabilities die Namespaces entfernen kann.
@@ -16,13 +40,13 @@ GetCapabilities:
 Data directory:
 - Was ist gekapselt an den Workspace? Was ist gekapselt an den Featuretype?
 
-## Mehrere Geometriespalten
+### Mehrere Geometriespalten
 Siehe agi_mopublic_pub Grundstücke. Wollen wir ja eh nicht mehr aber falls vorhanden, kann man es im SLD filtern.
 
-## JNDI
+### JNDI
 Siehe https://github.com/edigonzales/docker-geoserver. Die _context.xml_-Datei wird reingebrannt. Credentials können als Env Vars injected werden. Dazu muss Tomcat mit `-Dorg.apache.tomcat.util.digester.PROPERTY_SOURCE=org.apache.tomcat.util.digester.EnvironmentPropertySource` (siehe Dockerfile) gestartet werden.
 
-## GetFeatureInfo
+### GetFeatureInfo
 
 Im Featuretype kann man bereits vieles konfigurieren:
 
@@ -51,7 +75,7 @@ Verbesserungen Geoserver:
 **TODO**: Idee Custom Layerinfo: Statischer Methodenaufruf im GeoJson-Template. Die Methode liefert html und map mit Werten zurück. Dann kann immer gewählt werden, ob html oder die Werte vom Web GIS Client gerendert werden. Die Werte sind in den Standard-Properties. Das html ist escaped in einem Root-Feld (wie der Titel).
 
 
-### Zusätzlicher HTML-Link 
+#### Zusätzlicher HTML-Link 
 Ausgangslage:
 - siehe Intercapi-Link
 - Heute ein zusätzliches Jinja-Template
@@ -67,7 +91,7 @@ Beispiel:
 http://localhost/geoserver/agi/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image%2Fpng&TRANSPARENT=true&QUERY_LAYERS=agi%3Amopublic_grundstueck&STYLES&LAYERS=agi%3Amopublic_grundstueck&exceptions=application%2Fvnd.ogc.se_inimage&INFO_FORMAT=text%2Fhtml&FEATURE_COUNT=50&X=50&Y=50&SRS=EPSG%3A2056&WIDTH=101&HEIGHT=101&BBOX=2596123.0371667286%2C1225519.1819063514%2C2596364.021465255%2C1225760.1662048781
 ```
 
-### Objektblatt
+#### Objektblatt
 Ausgangslage:
 - siehe Objektblatt bei den Kantonsgrenzzeichen
 - Wird heute im SIMI konfiguriert
@@ -90,7 +114,7 @@ JSON:
 http://localhost/geoserver/agi/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image%2Fpng&TRANSPARENT=true&QUERY_LAYERS=agi%3Ainvntr_hhtsgrnzen_kantonsgrenzstein&STYLES&LAYERS=agi%3Ainvntr_hhtsgrnzen_kantonsgrenzstein&exceptions=application%2Fvnd.ogc.se_inimage&INFO_FORMAT=application/json&FEATURE_COUNT=50&X=50&Y=50&SRS=EPSG%3A2056&WIDTH=101&HEIGHT=101&BBOX=2614991.6249525906%2C1235881.6115957745%2C2616919.499340804%2C1237809.4859839883
 ```
 
-### Darstellen von Fotos
+#### Darstellen von Fotos
 Ausgangslage:
 - siehe Kunstbauten
 - Beispiel hier mit Kantonsgrenzzeichen
@@ -103,7 +127,7 @@ Beispiel:
 http://localhost/geoserver/agi/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image%2Fpng&TRANSPARENT=true&QUERY_LAYERS=agi%3Ainvntr_hhtsgrnzen_kantonsgrenzstein&STYLES&LAYERS=agi%3Ainvntr_hhtsgrnzen_kantonsgrenzstein&exceptions=application%2Fvnd.ogc.se_inimage&INFO_FORMAT=text%2Fhtml&FEATURE_COUNT=50&X=50&Y=50&SRS=EPSG%3A2056&WIDTH=101&HEIGHT=101&BBOX=2616029.2107360745%2C1220585.024665918%2C2619884.959512502%2C1224440.7734423454
 ```
 
-### Spezielles Template (inkl. JSON-Objekte)
+#### Spezielles Template (inkl. JSON-Objekte)
 
 Ausgangslage:
 - siehe Sondernutzungspläne
@@ -121,7 +145,7 @@ Beispiel:
 http://localhost/geoserver/arp/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image%2Fpng&TRANSPARENT=true&QUERY_LAYERS=arp%3Ach.so.arp.nutzungsplanung.sondernutzungsplaene&STYLES&LAYERS=arp%3Ach.so.arp.nutzungsplanung.sondernutzungsplaene&exceptions=application%2Fvnd.ogc.se_inimage&INFO_FORMAT=text%2Fhtml&FEATURE_COUNT=50&X=50&Y=50&SRS=EPSG%3A2056&WIDTH=101&HEIGHT=101&BBOX=2596890.258904044%2C1226760.8845875326%2C2596920.38194136%2C1226791.0076248485
 ```
 
-### Automatisch JSON 
+#### Automatisch JSON 
 
 Ausgangslage:
 - siehe AV-Mutationen. 
@@ -136,13 +160,13 @@ Herausforderung:
 - starts_with("[{\"") etc.
 - Man könnte eventuell auch eine JSON-Utility-Klasse schreiben und bereitstellen. Man spart sich dabei vielleicht Code (z.B. keine Unterscheidung Objekt vs Liste).
 
-### Fall Pythonmodul
+#### Fall Pythonmodul
 
 Kann m.E. gleich gelöst werden wie der Fall "SQL-Query". Muss Interface implementieren (bei Bedarf abstrakte Klasse erweitern): Methodensignatur und Rückgabewert. Ein Repo mit den Java-Modulen, die dann für das neue Int-Deployment reingebrannt werden (das neue Int-Deployment muss nicht super schnell sein, da Dev-Deployment funktinioniert).
 
 https://github.com/sogis/layerinfo_modules/blob/master/heatdrill/src/heatdrill/layer_info.py
 
-### Fall SQL-Query
+#### Fall SQL-Query
 
 **Achtung:**: Im Dockerfile steht `-Dorg.geoserver.htmlTemplates.staticMemberAccess=*"`. So sind alle statischen Methoden verfügbar. 
 
@@ -183,7 +207,7 @@ Beispiel:
 http://localhost/geoserver/agi/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image%2Fpng&TRANSPARENT=true&QUERY_LAYERS=agi%3Ach.so.agi.av.fixpunkte&STYLES&LAYERS=agi%3Ach.so.agi.av.fixpunkte&exceptions=application%2Fvnd.ogc.se_inimage&INFO_FORMAT=text%2Fhtml&FEATURE_COUNT=50&X=50&Y=50&SRS=EPSG%3A2056&WIDTH=101&HEIGHT=101&BBOX=2596897.7081112145%2C1225435.868221151%2C2597138.6924097408%2C1225676.8525196777
 ```
 
-## Zeilen filtern
+### Zeilen filtern
 
 Beispiel "Sondernutzungspläne" (ch.so.arp.nutzungsplanung.sondernutzungsplaene).
 
@@ -204,20 +228,20 @@ typ_code_kt IN ('610', '611', '620') AND rechtsstatus = 'inKraft' AND publiziert
 
 Das `now()` habe ich überprüft mit der Strasse auf den Grenchenberg. Das Datum auf irgendwas in der Zukunft gesetzt und die Strasse erschien nicht mehr.
 
-## Schemanamen ändern / umhängen
+### Schemanamen ändern / umhängen
 - v1 -> v2 aber gleiche Layerdefinitionen?
 - Die gehen verloren, wenn man im Store das Schema ändert, auch wenn die Tabellennamen identisch sind? Man kann aber im XML einfach umhängen?
 
-## SQL View
+### SQL View
 - Man kann eine beliebige View definieren.
 - Wird aber nicht persistiert in der DB, sondern ist eher eine "Virtuelle Tabelle".
 - Öffnet natürlich Tür und Tor für allerlei Schabernack.
 - Könnte man erlauben für Spezialfälle **ABER** !!!! nur innerhalb der Tabelle oder maximal Schema.
 
-## Format-Output Restrictions
+### Format-Output Restrictions
 - Siehe WMS-Adminpage. 
 - GetMap und GetFeatureInfo
 
-## REST
+### REST
 
 
