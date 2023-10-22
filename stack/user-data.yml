@@ -1,0 +1,15 @@
+#cloud-config
+
+package_upgrade: true
+
+runcmd:
+  - apt update
+  - adduser --disabled-password --gecos "" appuser
+  - usermod -aG docker appuser
+  - su -c 'git clone https://github.com/edigonzales/geoserver-tests.git /home/appuser/geoserver-tests' - appuser
+
+power_state:
+  delay: "now"
+  mode: reboot
+  message: First reboot
+  condition: True

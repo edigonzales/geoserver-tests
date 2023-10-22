@@ -97,10 +97,12 @@ services:
   #   image: sogis/geoserver:2.23.2
   #   environment:
   #     TZ: Europe/Zurich
-  #     DB_USER_PUB: ddluser
-  #     DB_PWD_PUB: ddluser
-  #     DB_USER_EDIT: ddluser
-  #     DB_PWD_EDIT: ddluser
+  #     DB_URI_PUB: ${DB_URI_PUB}
+  #     DB_USER_PUB: ${POSTGRESQL_USERNAME_DDL}
+  #     DB_PWD_PUB: ${POSTGRESQL_PASSWORD_DDL}
+  #     DB_URI_EDIT: ${DB_URI_EDIT}
+  #     DB_USER_EDIT: ${POSTGRESQL_USERNAME_DDL}
+  #     DB_PWD_EDIT: ${POSTGRESQL_PASSWORD_DDL}
   #     # LANG: de_CH.UTF-8
   #     # LANGUAGE: de_CH:de
   #     # LC_ALL: de_CH.UTF-8
