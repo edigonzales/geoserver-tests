@@ -1,7 +1,8 @@
 networks:
   backend:
-    name: jenkins-backend
+    name: backend
     driver: bridge
+
 services:
   # gretl:
   #   image: sogis/gretl:${GRETL_IMAGE_TAG:-2.2.373}
@@ -26,39 +27,42 @@ services:
   #   networks:
   #     - custom_network
 
-#   # edit-db:
-#   #   image: bitnami/postgresql:14.8.0-debian-11-r74
-#   #   environment:
-#   #     TZ: Europe/Zurich
-#   #     POSTGRESQL_DATABASE: edit
-#   #     POSTGRESQL_USERNAME: ddluser
-#   #     POSTGRESQL_PASSWORD: ddluser
-#   #     POSTGRESQL_POSTGRES_PASSWORD: secret
-#   #     POSTGRESQL_INITSCRIPTS_USERNAME: postgres
-#   #     POSTGRESQL_INITSCRIPTS_PASSWORD: secret
-#   #     #POSTGRESQL_INITDB_ARGS: --locale=de_CH.UTF-8
-#   #   ports:
-#   #     - "54321:5432"
-#   #   volumes:
-#   #     - type: bind
-#   #       source: ./docker-compose/preinitdb.d
-#   #       target: /docker-entrypoint-preinitdb.d
-#   #     - type: bind
-#   #       source: ./docker-compose/initdb.d
-#   #       target: /docker-entrypoint-initdb.d
-#   #     - type: volume
-#   #       source: postgresql_data_edit
-#   #       target: /bitnami/postgresql
+  # edit-db:
+  #   image: bitnami/postgresql:14.8.0-debian-11-r74
+  #   environment:
+  #     TZ: Europe/Zurich
+  #     POSTGRESQL_DATABASE: edit
+  #     POSTGRESQL_USERNAME: ddluser
+  #     POSTGRESQL_PASSWORD: ddluser
+  #     POSTGRESQL_POSTGRES_PASSWORD: secret
+  #     POSTGRESQL_INITSCRIPTS_USERNAME: postgres
+  #     POSTGRESQL_INITSCRIPTS_PASSWORD: secret
+  #     #POSTGRESQL_INITDB_ARGS: --locale=de_CH.UTF-8
+  #   ports:
+  #     - "54321:5432"
+  #   volumes:
+  #     - type: bind
+  #       source: ./docker-compose/preinitdb.d
+  #       target: /docker-entrypoint-preinitdb.d
+  #     - type: bind
+  #       source: ./docker-compose/initdb.d
+  #       target: /docker-entrypoint-initdb.d
+  #     - type: volume
+  #       source: postgresql_data_edit
+  #       target: /bitnami/postgresql
+
   pub-db:
     image: bitnami/postgresql:14.8.0-debian-11-r74
     environment:
       TZ: Europe/Zurich
       POSTGRESQL_DATABASE: pub
-      POSTGRESQL_USERNAME: ddluser
-      POSTGRESQL_PASSWORD: ddluser
-      POSTGRESQL_POSTGRES_PASSWORD: secret
-      POSTGRESQL_INITSCRIPTS_USERNAME: postgres
-      POSTGRESQL_INITSCRIPTS_PASSWORD: secret
+      POSTGRESQL_USERNAME: ${POSTGRESQL_USERNAME_DDL}
+      POSTGRESQL_PASSWORD: ${POSTGRESQL_PASSWORD_DDL}
+      POSTGRESQL_USERNAME_DML: ${POSTGRESQL_USERNAME_DML}
+      POSTGRESQL_PASSWORD_DML: ${POSTGRESQL_PASSWORD_DML}
+      POSTGRESQL_POSTGRES_PASSWORD: ${POSTGRESQL_POSTGRES_PASSWORD}
+      POSTGRESQL_INITSCRIPTS_USERNAME: ${POSTGRESQL_INITSCRIPTS_USERNAME}
+      POSTGRESQL_INITSCRIPTS_PASSWORD: ${POSTGRESQL_INITSCRIPTS_PASSWORD}
       #POSTGRESQL_INITDB_ARGS: --locale=de_CH.UTF-8
     ports:
       - "54322:5432"
@@ -89,39 +93,40 @@ services:
     networks:
       - backend
 
+  # geoserver:
+  #   image: sogis/geoserver:2.23.2
+  #   environment:
+  #     TZ: Europe/Zurich
+  #     DB_USER_PUB: ddluser
+  #     DB_PWD_PUB: ddluser
+  #     DB_USER_EDIT: ddluser
+  #     DB_PWD_EDIT: ddluser
+  #     # LANG: de_CH.UTF-8
+  #     # LANGUAGE: de_CH:de
+  #     # LC_ALL: de_CH.UTF-8
+  #   ports:
+  #     - "80:8080"
+  #   volumes:
+  #     - type: bind
+  #       source: ./data_dir
+  #       target: /usr/local/geoserver/data
+  #   depends_on:
+  #     - pub-db
+  #     - edit-db
 
-#   # geoserver:
-#   #   image: sogis/geoserver:2.23.2
-#   #   environment:
-#   #     TZ: Europe/Zurich
-#   #     DB_USER_PUB: ddluser
-#   #     DB_PWD_PUB: ddluser
-#   #     DB_USER_EDIT: ddluser
-#   #     DB_PWD_EDIT: ddluser
-#   #     # LANG: de_CH.UTF-8
-#   #     # LANGUAGE: de_CH:de
-#   #     # LC_ALL: de_CH.UTF-8
-#   #   ports:
-#   #     - "80:8080"
-#   #   volumes:
-#   #     - type: bind
-#   #       source: ./data_dir
-#   #       target: /usr/local/geoserver/data
-#   #   depends_on:
-#   #     - pub-db
-#   #     - edit-db
-#   # dozzle:
-#   #   container_name: dozzle
-#   #   image: amir20/dozzle:latest
-#   #   environment:
-#   #     TZ: Europe/Zurich
-#   #   # environment:
-#   #   #   DOZZLE_USERNAME: admin
-#   #   #   DOZZLE_PASSWORD: admin
-#   #   volumes:
-#   #     - /var/run/docker.sock:/var/run/docker.sock
-#   #   ports:
-#   #     - 9999:8080
+  # dozzle:
+  #   container_name: dozzle
+  #   image: amir20/dozzle:latest
+  #   environment:
+  #     TZ: Europe/Zurich
+  #   # environment:
+  #   #   DOZZLE_USERNAME: admin
+  #   #   DOZZLE_PASSWORD: admin
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #   ports:
+  #     - 9999:8080
+
 volumes:
   postgresql_data_edit:
   postgresql_data_pub:

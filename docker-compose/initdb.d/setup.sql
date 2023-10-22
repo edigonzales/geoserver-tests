@@ -5,3 +5,4 @@ CREATE EXTENSION postgis;
 CREATE EXTENSION fuzzystrmatch;
 CREATE EXTENSION pg_stat_statements;
 CREATE EXTENSION "uuid-ossp";
+CREATE EXTENSION pg_trgm;

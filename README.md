@@ -22,7 +22,7 @@ POSTGRESQL_PASSWORD=lksdjf09783lkjadsf
 POSTGRESQL_PASSWORD: ${POSTGRESQL_PASSWORD}
 ```
 
-TODO: Der dmluser müsste man in einem Shellscript noch so verändern, dass man das Passwort setzen kann.
+TODO: Den dmluser müsste man in einem Shellscript noch so verändern, dass man das Passwort setzen kann.
 
 ### Geoserver
 Siehe auch "JNDI". Somit auch mittels .env-File. TODO: Hamen harmonisieren.
