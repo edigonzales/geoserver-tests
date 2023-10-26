@@ -1,14 +1,14 @@
 <dataStore>
   <id>DataStoreInfoImpl-764865a4:18a9eaaa1ac:-7ff2</id>
-  <name>agi_inventar_hoheitsgrenzen_pub</name>
-  <description>agi_inventar_hoheitsgrenzen_pub</description>
+  <name>agi_inventar_hoheitsgrenzen_pub_v1</name>
+  <description>agi_inventar_hoheitsgrenzen_pub_v1</description>
   <type>PostGIS (JNDI)</type>
   <enabled>true</enabled>
   <workspace>
     <id>WorkspaceInfoImpl-764865a4:18a9eaaa1ac:-8000</id>
   </workspace>
   <connectionParameters>
-    <entry key="schema">agi_inventar_hoheitsgrenzen_pub</entry>
+    <entry key="schema">agi_inventar_hoheitsgrenzen_pub_v1</entry>
     <entry key="Estimated extends">true</entry>
     <entry key="fetch size">1000</entry>
     <entry key="encode functions">true</entry>

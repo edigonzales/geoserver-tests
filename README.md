@@ -22,14 +22,15 @@ POSTGRESQL_PASSWORD=lksdjf09783lkjadsf
 POSTGRESQL_PASSWORD: ${POSTGRESQL_PASSWORD}
 ```
 
-TODO: Den dmluser müsste man in einem Shellscript noch so verändern, dass man das Passwort setzen kann.
 
 ### Geoserver
-Siehe auch "JNDI". Somit auch mittels .env-File. TODO: Hamen harmonisieren.
+Siehe auch "JNDI". Somit auch mittels .env-File.
 
 ## Testfälle
 
 ### Workspaces
+
+Oder pro Thema?
 
 GetCapabilities:
 - Mir noch nicht klar, ob man im GetCapabilities die Namespaces entfernen kann.
@@ -100,7 +101,7 @@ Lösung:
 - Ähnlich wie Zusätzlicher HTML-Link
 - Im Template muss jedoch gerechnet werden, um Klickpunkt zu eruieren und als Query-Parameter dem Objektblattaufruf zu übergeben.
 
-**Achtung:** Die Berechnung von x/y stimmt nur für ol3-Beispiele. Dieses komische 100 Pixel und 50 Pixel Konstrukt ist nicht generisch. Ggf. ein Grund mehr auch diese Rechnerei in eine statische Methode auszulagern: getXYFromRequest().
+**Achtung:** Die Berechnung von x/y stimmt nur für ol3-Beispiele. Dieses komische 100 Pixel und 50 Pixel Konstrukt ist nicht generisch. Ggf. ein Grund mehr auch diese Rechnerei in eine statische Methode auszulagern: getXYFromRequest(). Im SQL-Modul ist es korrekt gelöst (siehe auch dort).
 
 Beispiel:
 
@@ -229,8 +230,8 @@ typ_code_kt IN ('610', '611', '620') AND rechtsstatus = 'inKraft' AND publiziert
 Das `now()` habe ich überprüft mit der Strasse auf den Grenchenberg. Das Datum auf irgendwas in der Zukunft gesetzt und die Strasse erschien nicht mehr.
 
 ### Schemanamen ändern / umhängen
-- v1 -> v2 aber gleiche Layerdefinitionen?
-- Die gehen verloren, wenn man im Store das Schema ändert, auch wenn die Tabellennamen identisch sind? Man kann aber im XML einfach umhängen?
+- Einfachstes Umhängen bei identischem Modell funktioniert. Kann man händisch im datastore.xml machen. Es bleibt bei den Layer alles erhalten.
+- TODO: Modell ändert. Z.B. neues Attribut. Oder Attribut fällt weg.
 
 ### SQL View
 - Man kann eine beliebige View definieren.
@@ -244,4 +245,6 @@ Das `now()` habe ich überprüft mit der Strasse auf den Grenchenberg. Das Datum
 
 ### REST
 
+### Deployment / CI/CD
+- data_dir xml parsen nach dem Einchecken und schauen, ob die Fremdschlüssel ins Leere zeigen. Wäre wohl auch schon eine Kontrolle.
 
