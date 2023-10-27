@@ -30,7 +30,7 @@ Siehe auch "JNDI". Somit auch mittels .env-File.
 
 ### Workspaces
 
-Oder pro Thema?
+Oder pro Thema? Das hätte auch den Vorteil, dass man WFS pro Workspace freischalten muss/kann. Wobei ich eigentlich schon fast wieder Freund bin von alles auch als WFS publizieren.
 
 GetCapabilities:
 - Mir noch nicht klar, ob man im GetCapabilities die Namespaces entfernen kann.
@@ -82,7 +82,7 @@ Ausgangslage:
 - Heute ein zusätzliches Jinja-Template
 
 Lösung:
-- Dem FeaturType ein zusätzliches Attribut hinzufügen.
+- Dem FeatureType ein zusätzliches Attribut hinzufügen.
 - Basis-Url ist statisch und für den EGRID kann man auf das EGRID-Attribut zugreifen.
 - Datentyp "String"
 - Im HTML-Template wird alles mit "http[s]" zu einem Link gemacht.
@@ -163,7 +163,7 @@ Herausforderung:
 
 #### Fall Pythonmodul
 
-Kann m.E. gleich gelöst werden wie der Fall "SQL-Query". Muss Interface implementieren (bei Bedarf abstrakte Klasse erweitern): Methodensignatur und Rückgabewert. Ein Repo mit den Java-Modulen, die dann für das neue Int-Deployment reingebrannt werden (das neue Int-Deployment muss nicht super schnell sein, da Dev-Deployment funktinioniert).
+Kann m.E. gleich gelöst werden wie der Fall "SQL-Query". Muss Interface implementieren (bei Bedarf abstrakte Klasse erweitern): Methodensignatur und Rückgabewert. Ein Repo mit den Java-Modulen, die dann für das neue Int-Deployment reingebrannt werden (das neue Int-Deployment muss nicht super schnell sein, da Dev-Deployment funktioniert).
 
 https://github.com/sogis/layerinfo_modules/blob/master/heatdrill/src/heatdrill/layer_info.py
 
@@ -229,9 +229,22 @@ typ_code_kt IN ('610', '611', '620') AND rechtsstatus = 'inKraft' AND publiziert
 
 Das `now()` habe ich überprüft mit der Strasse auf den Grenchenberg. Das Datum auf irgendwas in der Zukunft gesetzt und die Strasse erschien nicht mehr.
 
+### Excel-Ouput
+Bedürfnis Listen als Excel(-Report) abzugeben. Bei uns als Objektblatt umgesetzt. Hier kann man WFS-Excel-Output verwenden. Der Layer wird nochmals publiziert (wie bei uns als *.data). Dann wird beim WMS-Layer ein neues Attribut hinzugefügt mit der URL. Der WFS-Aufruf lässt sich filtern. Input kann Attributwert sein oder dann via Objektblatt-Mecchano. Hier habe ich SQL-View zum nochmaligen Publizieren verwendet, ist aber für das hier überflüssig.
+
+Beispiel:
+```
+http://localhost/geoserver/agi/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&FORMAT=image%2Fpng&TRANSPARENT=true&QUERY_LAYERS=agi%3Ach.so.agi.av.meldewesen.meldungen&STYLES&LAYERS=agi%3Ach.so.agi.av.meldewesen.meldungen&exceptions=application%2Fvnd.ogc.se_inimage&INFO_FORMAT=text%2Fhtml&FEATURE_COUNT=50&X=50&Y=50&SRS=EPSG%3A2056&WIDTH=101&HEIGHT=101&BBOX=2619994.162913437%2C1243472.2839097683%2C2620114.6550627006%2C1243592.7760590315
+```
+
+
+**Achtung:** Es braucht ein System, wie man die Test-/Int-/Prod-Umgebung in den URL abbilden kann (dito bei Objektblatt.)
+
 ### Schemanamen ändern / umhängen
 - Einfachstes Umhängen bei identischem Modell funktioniert. Kann man händisch im datastore.xml machen. Es bleibt bei den Layer alles erhalten.
 - TODO: Modell ändert. Z.B. neues Attribut. Oder Attribut fällt weg.
+
+
 
 ### SQL View
 - Man kann eine beliebige View definieren.

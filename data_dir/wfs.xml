@@ -34,10 +34,10 @@
   </metadata>
   <gml>
     <entry>
-      <version>V_11</version>
+      <version>V_10</version>
       <gml>
-        <srsNameStyle>URN</srsNameStyle>
-        <overrideGMLAttributes>false</overrideGMLAttributes>
+        <srsNameStyle>XML</srsNameStyle>
+        <overrideGMLAttributes>true</overrideGMLAttributes>
       </gml>
     </entry>
     <entry>
@@ -48,18 +48,28 @@
       </gml>
     </entry>
     <entry>
-      <version>V_10</version>
+      <version>V_11</version>
       <gml>
-        <srsNameStyle>XML</srsNameStyle>
-        <overrideGMLAttributes>true</overrideGMLAttributes>
+        <srsNameStyle>URN</srsNameStyle>
+        <overrideGMLAttributes>false</overrideGMLAttributes>
       </gml>
     </entry>
   </gml>
-  <serviceLevel>COMPLETE</serviceLevel>
-  <maxFeatures>1000000</maxFeatures>
+  <serviceLevel>BASIC</serviceLevel>
+  <maxFeatures>10000</maxFeatures>
   <featureBounding>false</featureBounding>
   <canonicalSchemaLocation>false</canonicalSchemaLocation>
   <encodeFeatureMember>false</encodeFeatureMember>
   <hitsIgnoreMaxFeatures>false</hitsIgnoreMaxFeatures>
   <includeWFSRequestDumpFile>false</includeWFSRequestDumpFile>
+  <getFeatureOutputTypeCheckingEnabled>true</getFeatureOutputTypeCheckingEnabled>
+  <getFeatureOutputTypes>
+    <string>excel</string>
+    <string>application/gml+xml; version=3.2</string>
+    <string>text/xml; subtype=gml/2.1.2</string>
+    <string>text/xml; subtype=gml/3.2</string>
+    <string>text/csv</string>
+    <string>json</string>
+    <string>text/xml; subtype=gml/3.1.1</string>
+  </getFeatureOutputTypes>
 </wfs>

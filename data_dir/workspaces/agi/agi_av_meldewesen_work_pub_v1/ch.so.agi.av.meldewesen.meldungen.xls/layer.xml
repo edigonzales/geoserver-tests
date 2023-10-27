@@ -1,0 +1,17 @@
+<layer>
+  <name>ch.so.agi.av.meldewesen.meldungen.xls</name>
+  <id>LayerInfoImpl--5081a652:18b711bb42a:-7fed</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--570ae188:124761b8d78:-7fdf</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--5081a652:18b711bb42a:-7fee</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2023-10-27 13:18:27.402 UTC</dateCreated>
+  <dateModified>2023-10-27 13:48:50.137 UTC</dateModified>
+</layer>

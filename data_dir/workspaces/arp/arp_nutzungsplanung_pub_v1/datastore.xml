@@ -1,14 +1,14 @@
 <dataStore>
   <id>DataStoreInfoImpl-8fa6d95:18ae167dc6e:-7ffe</id>
-  <name>arp_nutzungsplanung_pub_v1</name>
-  <description>arp_nutzungsplanung_pub_v1</description>
+  <name>arp_nutzungsplanung_pub_v2</name>
+  <description>arp_nutzungsplanung_pub_v2</description>
   <type>PostGIS (JNDI)</type>
   <enabled>true</enabled>
   <workspace>
     <id>WorkspaceInfoImpl-8fa6d95:18ae167dc6e:-8000</id>
   </workspace>
   <connectionParameters>
-    <entry key="schema">arp_nutzungsplanung_pub_v1</entry>
+    <entry key="schema">arp_nutzungsplanung_pub_v2</entry>
     <entry key="Estimated extends">true</entry>
     <entry key="fetch size">1000</entry>
     <entry key="encode functions">true</entry>

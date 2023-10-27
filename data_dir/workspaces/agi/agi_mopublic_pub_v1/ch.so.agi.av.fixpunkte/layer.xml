@@ -1,0 +1,16 @@
+<layer>
+  <name>ch.so.agi.av.fixpunkte</name>
+  <id>LayerInfoImpl--414977eb:18ae6ccba23:-7fff</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--570ae188:124761b8d78:-7fdf</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--414977eb:18ae6ccba23:-8000</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+  <dateCreated>2023-09-30 15:54:51.343 UTC</dateCreated>
+</layer>

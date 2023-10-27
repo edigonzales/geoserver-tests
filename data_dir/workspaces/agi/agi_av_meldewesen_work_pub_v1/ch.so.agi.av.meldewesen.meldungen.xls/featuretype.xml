@@ -1,0 +1,104 @@
+<featureType>
+  <id>FeatureTypeInfoImpl--5081a652:18b711bb42a:-7fee</id>
+  <name>ch.so.agi.av.meldewesen.meldungen.xls</name>
+  <nativeName>ch.so.agi.av.meldewesen.meldungen</nativeName>
+  <namespace>
+    <id>NamespaceInfoImpl-764865a4:18a9eaaa1ac:-7fff</id>
+  </namespace>
+  <title>ch.so.agi.av.meldewesen.meldungen.xls</title>
+  <keywords>
+    <string>features</string>
+    <string>ch.so.agi.av.meldewesen.meldungen</string>
+  </keywords>
+  <nativeCRS class="projected">PROJCS[&quot;CH1903+ / LV95&quot;, 
+  GEOGCS[&quot;CH1903+&quot;, 
+    DATUM[&quot;CH1903+&quot;, 
+      SPHEROID[&quot;Bessel 1841&quot;, 6377397.155, 299.1528128, AUTHORITY[&quot;EPSG&quot;,&quot;7004&quot;]], 
+      TOWGS84[674.374, 15.056, 405.346, 0.0, 0.0, 0.0, 0.0], 
+      AUTHORITY[&quot;EPSG&quot;,&quot;6150&quot;]], 
+    PRIMEM[&quot;Greenwich&quot;, 0.0, AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]], 
+    UNIT[&quot;degree&quot;, 0.017453292519943295], 
+    AXIS[&quot;Geodetic longitude&quot;, EAST], 
+    AXIS[&quot;Geodetic latitude&quot;, NORTH], 
+    AUTHORITY[&quot;EPSG&quot;,&quot;4150&quot;]], 
+  PROJECTION[&quot;Oblique_Mercator&quot;, AUTHORITY[&quot;EPSG&quot;,&quot;9815&quot;]], 
+  PARAMETER[&quot;longitude_of_center&quot;, 7.439583333333333], 
+  PARAMETER[&quot;latitude_of_center&quot;, 46.952405555555565], 
+  PARAMETER[&quot;azimuth&quot;, 90.0], 
+  PARAMETER[&quot;scale_factor&quot;, 1.0], 
+  PARAMETER[&quot;false_easting&quot;, 2600000.0], 
+  PARAMETER[&quot;false_northing&quot;, 1200000.0], 
+  PARAMETER[&quot;rectified_grid_angle&quot;, 90.0], 
+  UNIT[&quot;m&quot;, 1.0], 
+  AXIS[&quot;Easting&quot;, EAST], 
+  AXIS[&quot;Northing&quot;, NORTH], 
+  AUTHORITY[&quot;EPSG&quot;,&quot;2056&quot;]]</nativeCRS>
+  <srs>EPSG:2056</srs>
+  <nativeBoundingBox>
+    <minx>2604418.759</minx>
+    <maxx>2636044.41</maxx>
+    <miny>1223516.48</miny>
+    <maxy>1246129.37</maxy>
+    <crs class="projected">EPSG:2056</crs>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>7.496903036325082</minx>
+    <maxx>7.915790265048461</maxx>
+    <miny>47.16163431680905</miny>
+    <maxy>47.3659913917045</maxy>
+    <crs>EPSG:4326</crs>
+  </latLonBoundingBox>
+  <projectionPolicy>FORCE_DECLARED</projectionPolicy>
+  <enabled>true</enabled>
+  <advertised>false</advertised>
+  <metadata>
+    <entry key="JDBC_VIRTUAL_TABLE">
+      <virtualTable>
+        <name>ch.so.agi.av.meldewesen.meldungen</name>
+        <sql>SELECT &#xd;
+t_id,&#xd;
+grundstuecksnummer,&#xd;
+egrid,&#xd;
+datum_meldung,&#xd;
+meldegrund,&#xd;
+baujahr,&#xd;
+gemeinde,&#xd;
+gebaeudebezeichnung,&#xd;
+gebaeudeadresse,&#xd;
+egid,&#xd;
+verwalter,&#xd;
+eigentuemer,&#xd;
+astatus,&#xd;
+datum_abgeschlossen,&#xd;
+bemerkungen,&#xd;
+messageid,&#xd;
+insuranceobjectid,&#xd;
+lage&#xd;
+FROM agi_av_meldewesen_work_pub_v1.meldungen_meldung
+</sql>
+        <escapeSql>false</escapeSql>
+        <keyColumn>t_id</keyColumn>
+        <geometry>
+          <name>lage</name>
+          <type>Point</type>
+          <srid>2056</srid>
+        </geometry>
+      </virtualTable>
+    </entry>
+    <entry key="cachingEnabled">false</entry>
+  </metadata>
+  <store class="dataStore">
+    <id>DataStoreInfoImpl--5081a652:18b711bb42a:-8000</id>
+  </store>
+  <serviceConfiguration>false</serviceConfiguration>
+  <simpleConversionEnabled>false</simpleConversionEnabled>
+  <internationalTitle/>
+  <internationalAbstract/>
+  <maxFeatures>0</maxFeatures>
+  <numDecimals>0</numDecimals>
+  <padWithZeros>false</padWithZeros>
+  <forcedDecimal>false</forcedDecimal>
+  <overridingServiceSRS>false</overridingServiceSRS>
+  <skipNumberMatched>false</skipNumberMatched>
+  <circularArcPresent>false</circularArcPresent>
+</featureType>
